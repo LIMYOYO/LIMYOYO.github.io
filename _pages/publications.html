@@ -6,31 +6,40 @@ author_profile: true
 ---
 
 {% if site.author.googlescholar %}
-  <div class="wordwrap">You can also find my articles on <a href="{{site.author.googlescholar}}">my Google Scholar profile</a>.</div>
+<div class="wordwrap">You can also find my articles on <a href="{{site.author.googlescholar}}">my Google Scholar profile</a>.</div>
 {% endif %}
 
-{% include base_path %}
+<h2>Working Papers</h2>
+<hr/>
 
-<!-- New style rendering if publication categories are defined -->
-{% if site.publication_category %}
-  {% for category in site.publication_category  %}
-    {% assign title_shown = false %}
-    {% for post in site.publications reversed %}
-      {% if post.category != category[0] %}
-        {% continue %}
-      {% endif %}
-      {% unless title_shown %}
-        <h2>{{ category[1].title }}</h2><hr />
-        {% assign title_shown = true %}
-      {% endunless %}
-      {% include archive-single.html %}
-    {% endfor %}
-  {% endfor %}
-{% else %}
-  {% for post in site.publications reversed %}
-    {% include archive-single.html %}
-  {% endfor %}
-{% endif %}
+<ol>
+  <li>
+    <strong>Who benefit from crowd-sourcing in rental network competition</strong>
+    [<a href="/files/Crowd_sourcing_in_Rental_Network_Competition.pdf">PDF</a>]<br/>
+    <u>Zeyu Lin</u>, Y. Zhou, Y.-J. Chen<br/>
+    <em>Reject &amp; Resubmit (Invited)</em>, Manufacturing &amp; Service Operations Management
+  </li>
+  <li>
+    <strong>Towards sustainable urban mobility: User-collaborative battery swapping for shared electric micromobility</strong><br/>
+    R. Guan, <u>Zeyu Lin</u>, Y. Zhou, J.-B. Sheu<br/>
+    <em>Under Review</em>, Transportation Research Part B: Methodological
+  </li>
+</ol>
 
+<h2>Journal Publications</h2>
+<hr/>
 
-
+<ol>
+  <li>
+    <strong>Dynamic battery swapping and rebalancing strategies for e-bike sharing systems</strong>
+    [<a href="/files/Dynamic%20Battery%20Swapping%20Strategies.pdf">PDF</a>]<br/>
+    Y. Zhou, <u>Zeyu Lin</u>, R. Guan, J.-B. Sheu<br/>
+    <em>Transportation Research Part B: Methodological</em>, 2023
+  </li>
+  <li>
+    <strong>User-based relocation for e-bike sharing systems through power-level recommendation</strong>
+    [<a href="/files/e-Bike%20Sharing%20Relocation%20Recommendation.pdf">PDF</a>]<br/>
+    R. Guan, <u>Zeyu Lin</u>, Y. Zhou, Z. Zhu<br/>
+    <em>IEEE Transactions on Intelligent Transportation Systems</em>, 2025
+  </li>
+</ol>

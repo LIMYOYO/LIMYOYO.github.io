@@ -7,7 +7,7 @@ redirect_from:
   - /about.html
 ---
 
-I am a second-year M.S. student in Industrial Engineering at [Shanghai Jiao Tong University (SJTU)](https://www.sjtu.edu.cn/), advised by Prof. [Yaoming Zhou](https://www.ie.sjtu.edu.cn/Data/View/263) and Prof. Tangbin Xia. I received my B.E. in Industrial Engineering from SJTU in 2023.
+I am a third-year M.S. student in Industrial Engineering at [Shanghai Jiao Tong University (SJTU)](https://www.sjtu.edu.cn/). I received my B.E. in Industrial Engineering from SJTU in 2023.
 
 My research lies at the intersection of **Operations Research** and **Operations Management**, with a focus on:
 - **Shared Mobility & On-demand Platforms** — operational strategies for e-bike sharing systems, including fleet rebalancing, battery management, and user incentive design
@@ -16,27 +16,41 @@ My research lies at the intersection of **Operations Research** and **Operations
 
 I am particularly interested in problems where strategic interactions among firms, platforms, and users shape operational outcomes. My work combines analytical modeling (Markov chains, game theory, optimization) with empirical validation on large-scale real-world data.
 
-I am currently collaborating with Prof. [Zuo-Jun (Max) Shen](https://www.imse.hku.hk/people/max-shen) at The University of Hong Kong on proactive dispatching strategies for semiconductor OHT systems.
-
 **I am actively seeking Ph.D. opportunities for Fall 2026.**
+
+---
+
+## Recent Activities
+
+- **Dec 2025 – Present** — Research Assistant in [Prof. Zuo-Jun (Max) Shen](https://zj-maxshen.github.io/)'s group at The University of Hong Kong, working on proactive dispatching strategies for semiconductor OHT (overhead hoist transport) systems.
+- **2026** — Exploring the intersection of Large Language Models and Operations Management with [Prof. Jing Wu](https://www.bschool.cuhk.edu.hk/staff/wu-jing/) at The Chinese University of Hong Kong.
+- **2026** — Collaborating with [Weiliang Liu](https://weiliangliu0.github.io/) and [Jingwei Zhang](https://www.jingwei-zhang.com/) on stylized model research for medical operations.
 
 ---
 
 ## News
 
-- **Feb 2026** — Paper [3] "User-based relocation for e-bike sharing systems through power-level recommendation" published in *IEEE Transactions on Intelligent Transportation Systems*.
-- **2025** — Paper [1] "Who benefit from crowd-sourcing in rental network competition" received **Reject & Resubmit (Invited)** from *Manufacturing & Service Operations Management (MSOM)*.
+- **Feb 2026** — Paper [2] "User-based relocation for e-bike sharing systems through power-level recommendation" published in *IEEE Transactions on Intelligent Transportation Systems*.
+- **2025** — Paper [3] "Who benefit from crowd-sourcing in rental network competition" received **Reject & Resubmit (Invited)** from *Manufacturing & Service Operations Management (MSOM)*.
 - **2025** — Paper [4] "Towards sustainable urban mobility: User-collaborative battery swapping for shared electric micromobility" submitted to *Transportation Research Part B: Methodological*.
-- **Dec 2025** — Started a research collaboration with Prof. Zuo-Jun (Max) Shen at The University of Hong Kong on OHT systems for semiconductor fabrication.
 
 ---
 
-## Research Interests
+## Awards
 
-Operations Research & Management · Network Competition · Resource Allocation · Shared Mobility · Sharing Economy · On-demand Platforms · Reinforcement Learning
+| Year | Award |
+|------|-------|
+| 2024 | Scholarship, School of Mechanical Engineering, SJTU |
+| 2023 | First Prize, China Mechanical Engineering Innovation and Creativity Competition |
+| 2021 | Scholarship, Chun-Tsung Scientific Research Fund |
+| 2021 | First Prize, China Industrial Engineering Application Case Competition |
+| 2021 | Second Prize, Contemporary Undergraduate Mathematical Contest in Modeling (CUMCM) |
+| 2020 | First Prize, Toyota Cup National Industrial Engineering Innovation Competition |
 
 ---
 
-## Data Assets
+## Contact
 
-I maintain a large-scale private dataset of bike/e-bike trip records across **three rival platforms** in Xiamen, China — over **50 GB** of high-frequency transactional data, continuously updated since 2023. This dataset enables unique empirical studies on networked competition, platform pricing, and fleet rebalancing dynamics.
+- **Email:** [limeric0119@sjtu.edu.cn](mailto:limeric0119@sjtu.edu.cn)
+- **Phone:** +86 18059818878
+- **Location:** Shanghai, China
