@@ -1,18 +1,10 @@
-# Authors
-
-Name Name:
-  name        : Zeyu Lin
+main:
+  name        : "Zeyu Lin"
   uri         : "https://LIMYOYO.github.io"
   email       : "limeric0119@sjtu.edu.cn"
-  bio         : "A master student in Shanghai Jiao Tong University (SJTU) in Industrial Engineering."
-  avatar      : "bio-photo-2.jpg"
-  twitter     : "name"
-  google_plus : "Name"
-
-Name2 Name2:
-  name        : "Name2 Name2"
-  email       : "name2@name2.com"
-  bio         : "I ordered what?"
-  avatar      : "bio-photo.jpg"
-  twitter     : "name2"
-  google_plus : "Name"
+  bio         : "M.S. student (Industrial Engineering) at Shanghai Jiao Tong University (expected 2026). Research: OR/OM, network games, and shared mobility; focusing on competition, dynamic operations, and learning-augmented optimization."
+  avatar      : "bio-zeyu.jpg"
+  github      : "LIMYOYO"
+  linkedin    : ""
+  googlescholar: ""
+  twitter     : ""
