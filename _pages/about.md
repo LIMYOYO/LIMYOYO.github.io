@@ -20,14 +20,6 @@ I am particularly interested in problems where strategic interactions among firm
 
 ---
 
-## Recent Activities
-
-- **Dec 2025 – Present** — Research Assistant in [Prof. Zuo-Jun (Max) Shen](https://zj-maxshen.github.io/)'s group at The University of Hong Kong, working on proactive dispatching strategies for semiconductor OHT (overhead hoist transport) systems.
-- **2026** — Exploring the intersection of Large Language Models and Operations Management with [Prof. Jing Wu](https://www.bschool.cuhk.edu.hk/staff/wu-jing/) at The Chinese University of Hong Kong.
-- **2026** — Collaborating with [Weiliang Liu](https://weiliangliu0.github.io/) and [Jingwei Zhang](https://www.jingwei-zhang.com/) on stylized model research for medical operations.
-
----
-
 ## News
 
 - **Feb 2026** — Paper [2] "User-based relocation for e-bike sharing systems through power-level recommendation" published in *IEEE Transactions on Intelligent Transportation Systems*.
