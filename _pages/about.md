@@ -7,7 +7,7 @@ redirect_from:
   - /about.html
 ---
 
-I am a third-year M.S. student in Industrial Engineering at [Shanghai Jiao Tong University (SJTU)](https://www.sjtu.edu.cn/). I received my B.E. in Industrial Engineering from SJTU in 2023.
+I am an incoming Ph.D. student in **Operations Management and Statistics (OMS)** at the [Rotman School of Management](https://www.rotman.utoronto.ca/), University of Toronto, starting Fall 2026. I received my M.S. (2026) and B.E. (2023) in Industrial Engineering from [Shanghai Jiao Tong University (SJTU)](https://www.sjtu.edu.cn/).
 
 My research lies at the intersection of **Operations Research** and **Operations Management**, with a focus on:
 - **Shared Mobility & On-demand Platforms** — operational strategies for e-bike sharing systems, including fleet rebalancing, battery management, and user incentive design
@@ -15,8 +15,6 @@ My research lies at the intersection of **Operations Research** and **Operations
 - **Learning-Augmented Optimization** — reinforcement learning for competitive fleet allocation in shared mobility markets
 
 I am particularly interested in problems where strategic interactions among firms, platforms, and users shape operational outcomes. My work combines analytical modeling (Markov chains, game theory, optimization) with empirical validation on large-scale real-world data.
-
-**I am actively seeking Ph.D. opportunities for Fall 2026.**
 
 ---
 
@@ -43,6 +41,6 @@ I am particularly interested in problems where strategic interactions among firm
 
 ## Contact
 
-- **Email:** [limeric0119@sjtu.edu.cn](mailto:limeric0119@sjtu.edu.cn)
+- **Email:** [zeyulin.lin@mail.utoronto.ca](mailto:zeyulin.lin@mail.utoronto.ca)
 - **Phone:** +86 18059818878
-- **Location:** Shanghai, China
+- **Location:** Toronto, Canada

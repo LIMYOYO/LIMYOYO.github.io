@@ -25,11 +25,11 @@ author:
   avatar           : "bio-zeyu.jpg"
   name             : "Zeyu Lin"
   pronouns         : # example: "she/her"
-  bio              : "M.S. student in Industrial Engineering at SJTU. Research: OR/OM, network games, shared mobility, and on-demand platforms."
-  location         : "Shanghai, China"
-  employer         : "Shanghai Jiao Tong University"
+  bio              : "Incoming Ph.D. student in Operations Management and Statistics at the Rotman School of Management, University of Toronto. Research: OR/OM, network games, shared mobility, and on-demand platforms."
+  location         : "Toronto, Canada"
+  employer         : "Rotman School of Management, University of Toronto"
   uri              : # URL
-  email            : "limeric0119@sjtu.edu.cn"
+  email            : "zeyulin.lin@mail.utoronto.ca"
 
   # Academic websites
   academia         : # URL
