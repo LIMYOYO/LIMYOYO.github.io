@@ -39,7 +39,7 @@ author:
   impactstory      : # URL
   orcid            : # URL
   semantic         : # URL
-  ssrn             : # URL
+  ssrn             : "https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=12351508"
   pubmed           : # URL
   researchgate     : # URL
   scopus           : # URL
@@ -83,10 +83,10 @@ author:
 
 # Publication Category - The following the list of publication categories and their headings
 publication_category:
-  books:
-    title: 'Books'
+  workingpapers:
+    title: 'Working Papers'
   manuscripts:
-    title: 'Journal Articles'    
+    title: 'Journal Articles'
   conferences:
     title: 'Conference Papers'
 
@@ -142,7 +142,7 @@ facebook:
   username               :
   app_id                 :
   publisher              :
-og_image                 :  # Social media default site image
+og_image                 : "bio-zeyu.jpg" # Social media default site image
 og_description           :  # Social media default site image description
 # For specifying social profiles
 # - https://developers.google.com/structured-data/customize/social-profiles

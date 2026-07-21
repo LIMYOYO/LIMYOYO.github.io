@@ -1,7 +1,7 @@
 ---
 title: "Towards sustainable urban mobility: User-collaborative battery swapping for shared electric micromobility"
 collection: publications
-category: manuscripts
+category: workingpapers
 permalink: /publication/2025-trb-user-collaborative-swapping
 excerpt: 'We study user-collaborative battery swapping strategies for shared electric micromobility systems. Manuscript submitted to Transportation Research Part B: Methodological (Manuscript No. TRB-D-25-01174).'
 date: 2025-07-01

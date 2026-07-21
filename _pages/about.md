@@ -21,9 +21,9 @@ I am particularly interested in problems where strategic interactions among firm
 ## News
 
 - **Jul 2026** — New working paper "Moving Lifelines: Fixed Sites or Mobile Fleets for Emergency Medical Device Delivery?" (with Weiliang Liu and Jingwei Zhang) is now available on [SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7119321).
-- **Feb 2026** — Paper [2] "User-based relocation for e-bike sharing systems through power-level recommendation" published in *IEEE Transactions on Intelligent Transportation Systems*.
-- **2025** — Working paper [3] "Who benefit from crowd-sourcing in rental network competition" received **Reject & Resubmit (Invited)** from *Manufacturing & Service Operations Management (MSOM)*.
-- **2025** — Paper [4] "Towards sustainable urban mobility: User-collaborative battery swapping for shared electric micromobility" submitted to *Transportation Research Part B: Methodological*.
+- **Sep 2025** — Paper "User-based relocation for e-bike sharing systems through power-level recommendation" published in *IEEE Transactions on Intelligent Transportation Systems* (vol. 26, no. 9).
+- **2025** — Working paper "Who benefit from crowd-sourcing in rental network competition" received **Reject & Resubmit (Invited)** from *Manufacturing & Service Operations Management (MSOM)*.
+- **2025** — Paper "Towards sustainable urban mobility: User-collaborative battery swapping for shared electric micromobility" submitted to *Transportation Research Part B: Methodological*.
 
 ---
 
@@ -43,5 +43,4 @@ I am particularly interested in problems where strategic interactions among firm
 ## Contact
 
 - **Email:** [zeyulin.lin@mail.utoronto.ca](mailto:zeyulin.lin@mail.utoronto.ca)
-- **Phone:** +86 18059818878
 - **Location:** Toronto, Canada

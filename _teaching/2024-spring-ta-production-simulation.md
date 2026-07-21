@@ -10,6 +10,6 @@ location: "Shanghai, China"
 
 **Course:** Production System Modeling and Simulation
 
-**Role:** Teaching Assistant, 2024 – Present
+**Role:** Teaching Assistant, 2024 – 2026
 
 Assisted in teaching, grading, and mentoring student projects in production system modeling and simulation. Responsibilities include guiding students through simulation software, providing feedback on project reports, and holding office hours to support student learning.
