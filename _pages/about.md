@@ -33,19 +33,6 @@ I am particularly interested in problems where strategic interactions among firm
 
 ---
 
-## Awards
-
-| Year | Award |
-|------|-------|
-| 2024 | Scholarship, School of Mechanical Engineering, SJTU |
-| 2023 | First Prize, China Mechanical Engineering Innovation and Creativity Competition |
-| 2021 | Scholarship, Chun-Tsung Scientific Research Fund |
-| 2021 | First Prize, China Industrial Engineering Application Case Competition |
-| 2021 | Second Prize, Contemporary Undergraduate Mathematical Contest in Modeling (CUMCM) |
-| 2020 | First Prize, Toyota Cup National Industrial Engineering Innovation Competition |
-
----
-
 ## Contact
 
 - **Email:** [zeyulin.lin@mail.utoronto.ca](mailto:zeyulin.lin@mail.utoronto.ca)
