@@ -1,0 +1,5 @@
+{% if include.paper.review_status and include.paper.venue %}
+  <p><strong>{{ include.paper.review_status | escape }}</strong> at <i>{{ include.paper.venue | escape }}</i>.</p>
+{% elsif include.paper.venue %}
+  <p><i>{{ include.paper.venue }}</i>, {{ include.paper.date | default: "1900-01-01" | date: "%Y" }}</p>
+{% endif %}
