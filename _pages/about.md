@@ -7,9 +7,13 @@ redirect_from:
   - /about.html
 ---
 
-I am an incoming Ph.D. student in **Operations Management and Statistics (OMS)** at the [Rotman School of Management](https://www.rotman.utoronto.ca/), University of Toronto, starting Fall 2026. I received my M.S. (2026) and B.E. (2023) in Industrial Engineering from [Shanghai Jiao Tong University (SJTU)](https://www.sjtu.edu.cn/).
+I am a Ph.D. student in **Operations Management and Statistics (OMS)** at the [Rotman School of Management](https://www.rotman.utoronto.ca/), University of Toronto. I received my M.S. (2026) and B.E. (2023) in Industrial Engineering from [Shanghai Jiao Tong University (SJTU)](https://www.sjtu.edu.cn/).
 
-My research lies at the intersection of **Operations Research** and **Operations Management**, with a focus on:
+## Research Interests
+
+My primary research interest is **Robotics and Manufacturing Operations**. I explore how AI, embodied intelligence, and emerging modes of production are changing how manufacturers design production systems, organize work, and make operational decisions.
+
+My other research interests include:
 - **Shared Mobility & On-demand Platforms** — operational strategies for e-bike sharing systems, including fleet rebalancing, battery management, and user incentive design
 - **Network Competition & Game Theory** — Cournot-type network games, crowd-sourced labor in competitive rental markets
 - **Learning-Augmented Optimization** — reinforcement learning for competitive fleet allocation in shared mobility markets
@@ -20,6 +24,8 @@ I am particularly interested in problems where strategic interactions among firm
 
 ## News
 
+- **Nov 2026** — The working paper “Moving Lifelines” received a **Major Revision** decision from *Management Science*. [Paper details](/publication/2026-ssrn-moving-lifelines)
+- **Nov 2026** — I presented “Mobile AEDs on Ride-Hailing Fleets: When Should Cities Move Beyond Static Deployment?” from the “Moving Lifelines” project in San Francisco at the [2026 INFORMS Annual Meeting](https://www.informs.org/Meetings-Conferences/INFORMS-Conference-Calendar/2026-INFORMS-Annual-Meeting).
 - **Jul 2026** — New working paper "Moving Lifelines: Fixed Sites or Mobile Fleets for Emergency Medical Device Delivery?" (with Weiliang Liu and Jingwei Zhang) is now available on [SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7119321).
 - **Sep 2025** — Paper "User-based relocation for e-bike sharing systems through power-level recommendation" published in *IEEE Transactions on Intelligent Transportation Systems* (vol. 26, no. 9).
 - **2025** — Working paper "Who benefit from crowd-sourcing in rental network competition" received **Reject & Resubmit (Invited)** from *Manufacturing & Service Operations Management (MSOM)*.

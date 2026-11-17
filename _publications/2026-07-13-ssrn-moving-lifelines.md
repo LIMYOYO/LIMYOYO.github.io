@@ -3,7 +3,7 @@ title: "Moving Lifelines: Fixed Sites or Mobile Fleets for Emergency Medical Dev
 collection: publications
 category: workingpapers
 permalink: /publication/2026-ssrn-moving-lifelines
-excerpt: 'We study how cities should allocate a limited AED budget between static (fixed-site) and mobile (taxi/ride-hailing fleet) deployment systems to maximize timely AED deliveries for out-of-hospital cardiac arrest. Working paper available on SSRN.'
+excerpt: '**Major Revision at *Management Science*.** We study how cities should allocate a limited AED budget between static (fixed-site) and mobile (taxi/ride-hailing fleet) deployment systems to maximize timely AED deliveries for out-of-hospital cardiac arrest. Working paper available on SSRN.'
 date: 2026-07-13
 venue: 'SSRN Working Paper'
 paperurl: 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7119321'
@@ -16,4 +16,4 @@ We develop a stochastic spatial model where static delivery requires a two-leg r
 
 **Authors:** Zeyu Lin (University of Toronto, Rotman School of Management), Weiliang Liu (The Chinese University of Hong Kong), Jingwei Zhang (Cornell University, SC Johnson College of Business)
 
-**Status:** Working paper, available at [SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7119321)
+**Status:** Major Revision at *Management Science*. Working paper available on [SSRN](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7119321).

@@ -12,7 +12,7 @@ site_theme               : "default" # The available themes options are "default
 title                    : "Zeyu Lin"
 title_separator          : "-"
 name                     : &name "Zeyu Lin"
-description              : "I study resource allocation and incentive design in shared mobility and on-demand platforms, with emphasis on network competition, dynamic operations, and learning-augmented optimization."
+description              : "Zeyu Lin is a Rotman Ph.D. student studying how AI, robotics, and emerging production methods are changing manufacturing operations."
 url                      : "https://LIMYOYO.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "LIMYOYO/LIMYOYO.github.io"
@@ -22,10 +22,10 @@ repository               : "LIMYOYO/LIMYOYO.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "bio-zeyu.jpg"
+  avatar           : "zeyu-lin-rotman-portrait.jpg"
   name             : "Zeyu Lin"
   pronouns         : # example: "she/her"
-  bio              : "Incoming Ph.D. student in Operations Management and Statistics at the Rotman School of Management, University of Toronto. Research: OR/OM, network games, shared mobility, and on-demand platforms."
+  bio              : "Ph.D. student in Operations Management and Statistics. My primary research interest is robotics and manufacturing operations."
   location         : "Toronto, Canada"
   employer         : "Rotman School of Management, University of Toronto"
   uri              : # URL
@@ -142,7 +142,7 @@ facebook:
   username               :
   app_id                 :
   publisher              :
-og_image                 : "bio-zeyu.jpg" # Social media default site image
+og_image                 : "zeyu-lin-rotman-portrait.jpg" # Social media default site image
 og_description           :  # Social media default site image description
 # For specifying social profiles
 # - https://developers.google.com/structured-data/customize/social-profiles
