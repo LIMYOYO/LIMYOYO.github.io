@@ -12,7 +12,7 @@ site_theme               : "default" # The available themes options are "default
 title                    : "Zeyu Lin"
 title_separator          : "-"
 name                     : &name "Zeyu Lin"
-description              : "Zeyu Lin is a Rotman Ph.D. student studying how AI, robotics, and emerging production methods are changing manufacturing operations."
+description              : "Zeyu Lin is a Rotman Ph.D. student studying intelligence and robotics in manufacturing operations."
 url                      : "https://LIMYOYO.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "LIMYOYO/LIMYOYO.github.io"
@@ -25,7 +25,7 @@ author:
   avatar           : "zeyu-lin-rotman-portrait.jpg"
   name             : "Zeyu Lin"
   pronouns         : # example: "she/her"
-  bio              : "Ph.D. student in Operations Management and Statistics. My primary research interest is robotics and manufacturing operations."
+  bio              : "Ph.D. student in Operations Management and Statistics. I study intelligence and robotics in manufacturing operations."
   location         : "Toronto, Canada"
   employer         : "Rotman School of Management, University of Toronto"
   uri              : # URL

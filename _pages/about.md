@@ -11,14 +11,11 @@ I am a Ph.D. student in **Operations Management and Statistics (OMS)** at the [R
 
 ## Research Interests
 
-My primary research interest is **Robotics and Manufacturing Operations**. I explore how AI, embodied intelligence, and emerging modes of production are changing how manufacturers design production systems, organize work, and make operational decisions.
+### Intelligence & Robotics in Manufacturing Operations
 
-My other research interests include:
-- **Shared Mobility & On-demand Platforms** — operational strategies for e-bike sharing systems, including fleet rebalancing, battery management, and user incentive design
-- **Network Competition & Game Theory** — Cournot-type network games, crowd-sourced labor in competitive rental markets
-- **Learning-Augmented Optimization** — reinforcement learning for competitive fleet allocation in shared mobility markets
+I study how AI, embodied intelligence, and robotics change what manufacturers can produce and how they organize production. I ask how firms should design production systems and allocate work between people and machines as new production methods emerge.
 
-I am particularly interested in problems where strategic interactions among firms, platforms, and users shape operational outcomes. My work combines analytical modeling (Markov chains, game theory, optimization) with empirical validation on large-scale real-world data.
+My other work spans shared mobility and on-demand platforms, network competition and game theory, and learning-augmented optimization. In this work, I combine analytical modeling with large-scale data analysis to study decisions such as fleet allocation, battery management, and user incentives.
 
 ---
 
