@@ -2,6 +2,7 @@
 title: "Moving Lifelines: Fixed Sites or Mobile Fleets for Volunteer-Enabled Emergency Medical Device Delivery?"
 collection: publications
 category: workingpapers
+area: 'Healthcare operations'
 permalink: /publication/2026-ssrn-moving-lifelines
 excerpt: 'We study how cities should allocate a limited AED budget between static (fixed-site) and mobile (taxi/ride-hailing fleet) deployment systems to maximize timely AED deliveries for out-of-hospital cardiac arrest.'
 date: 2026-07-13

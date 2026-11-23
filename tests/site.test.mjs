@@ -198,3 +198,21 @@ test('CV page shows the PDF inline and offers a download', () => {
   assert.match(html, /<a[^>]*href="\/files\/cv_zeyulin\.pdf"[^>]*download/);
   assert.match(html, /<a[^>]*href="\/files\/cv_zeyulin\.pdf"[^>]*target="_blank"/);
 });
+
+test('paper rows show their research area', () => {
+  const areas = {
+    '2026-ssrn-moving-lifelines': 'Healthcare operations',
+    '2025-trb-user-collaborative-swapping': 'Shared mobility',
+    '2025-msom-crowdsourcing-rental': 'Network competition',
+    '2025-tits-ebike-user-relocation': 'Shared mobility',
+    '2023-trb-ebike-staff-relocation': 'Shared mobility',
+  };
+  for (const url of ['/', '/publications/']) {
+    const html = readPage(url);
+    for (const [slug, area] of Object.entries(areas)) {
+      const at = html.indexOf(`href="/publication/${slug}"`);
+      const row = html.slice(html.lastIndexOf('<li', at), html.indexOf('</li>', at));
+      assert.match(row, new RegExp(`class="row__area"[^>]*>${area}<`), `${slug} on ${url}`);
+    }
+  }
+});

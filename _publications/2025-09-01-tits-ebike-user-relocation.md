@@ -2,6 +2,7 @@
 title: "User-based relocation for e-bike sharing systems through power-level recommendation"
 collection: publications
 category: manuscripts
+area: 'Shared mobility'
 permalink: /publication/2025-tits-ebike-user-relocation
 excerpt: 'We develop a user-incentive mechanism with power-level recommendations to complement staff-based relocation for e-bike sharing. A multi-battery-state Markov model and variable neighborhood search algorithm are devised; empirical validation demonstrates profit gains of up to 12.6%.'
 date: 2025-09-01

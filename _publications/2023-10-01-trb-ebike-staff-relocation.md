@@ -2,6 +2,7 @@
 title: "Dynamic battery swapping and rebalancing strategies for e-bike sharing systems"
 collection: publications
 category: manuscripts
+area: 'Shared mobility'
 permalink: /publication/2023-trb-ebike-staff-relocation
 excerpt: 'We develop a staff-based operational strategy for e-bike sharing systems that integrates e-bike relocation and battery swapping through unified optimization. Using a Markov chain model, we propose an adaptive one-step Markovian strategy and a globally optimal rolling-horizon strategy, achieving over 20% profit improvement against industrial baselines in real-world simulations.'
 date: 2023-10-01

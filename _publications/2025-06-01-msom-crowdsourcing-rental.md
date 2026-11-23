@@ -2,6 +2,7 @@
 title: "Who benefit from crowd-sourcing in rental network competition"
 collection: publications
 category: workingpapers
+area: 'Network competition'
 permalink: /publication/2025-msom-crowdsourcing-rental
 excerpt: 'We build a Networked Cournot model to study competition under crowd-sourced labor in rental networks, analyzing firm profits, labor surplus, and consumer surplus under firm, crowd, and dual sourcing.'
 date: 2025-06-01

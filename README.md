@@ -22,6 +22,7 @@ Add a Markdown file to `_publications/`. Copy an existing one and change its fro
 |---|---|
 | `title` | Paper title |
 | `category` | `workingpapers`, `manuscripts` or `conferences` |
+| `area` | Research area shown in the lists, e.g. `Shared mobility` |
 | `permalink` | `/publication/<slug>` |
 | `date` | Used for ordering and the year shown |
 | `venue` | Journal or conference |

@@ -97,16 +97,18 @@ a:hover { text-decoration-color: var(--color-accent); }
 /* Rows: contents-style lists */
 .rows { list-style: none; margin: 0; padding: 0; border-top: var(--rule-heavy) solid var(--color-ink); }
 .rows > li { border-bottom: var(--rule-hair) solid var(--color-rule); }
-.row { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr) 9ch 4ch; gap: var(--gap-columns); align-items: baseline; padding-block: var(--space-lg); text-decoration: none; color: inherit; }
+.row { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 2fr) minmax(0, 3.5fr) 9ch 4ch; gap: var(--gap-columns); align-items: baseline; padding-block: var(--space-lg); text-decoration: none; color: inherit; }
 a.row:hover .row__title, a.row__title:hover { text-decoration: underline; text-decoration-color: var(--color-accent); text-decoration-thickness: 2px; text-underline-offset: 0.15em; }
 .row__title { font-family: var(--font-display); font-weight: 800; font-variation-settings: "wdth" 75, "opsz" 48; font-size: var(--text-title); line-height: 1.1; color: var(--color-ink); letter-spacing: -0.005em; text-decoration: none; }
+.row__area { font-family: var(--font-display); font-weight: 500; font-variation-settings: "opsz" 12; font-size: var(--text-sm); color: var(--color-muted); }
 .row__out { font-family: var(--font-display); font-weight: 500; font-variation-settings: "opsz" 12; font-size: var(--text-sm); }
 .row__meta { font-size: var(--text-sm); color: var(--color-ink-2); }
 .row__meta strong { color: var(--color-ink); }
 .row__year { font-size: var(--text-sm); color: var(--color-muted); text-align: right; }
 @media (max-width: 48rem) {
   .row { grid-template-columns: 1fr auto auto; gap: var(--space-xs) var(--space-md); }
-  .row__title { grid-column: 1 / -1; }
+  .row__title, .row__area { grid-column: 1 / -1; }
+  .row__area { order: -1; }
 }
 .group + .group { margin-top: var(--space-2xl); }
 .group__label { font-family: var(--font-display); font-weight: 500; font-size: var(--text-sm); color: var(--color-muted); margin: 0 0 var(--space-sm); }

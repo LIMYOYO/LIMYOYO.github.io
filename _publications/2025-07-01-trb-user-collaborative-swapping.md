@@ -2,6 +2,7 @@
 title: "Towards sustainable urban mobility: User-collaborative battery swapping for shared electric micromobility"
 collection: publications
 category: workingpapers
+area: 'Shared mobility'
 permalink: /publication/2025-trb-user-collaborative-swapping
 excerpt: 'We study user-collaborative battery swapping strategies for shared electric micromobility systems.'
 date: 2025-07-01
