@@ -1,8 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 # Build the site into _site/ with the same gems GitHub Pages uses.
 # Streams the source into the container (works even when Docker cannot mount this folder).
 # Usage: tools/build.sh            (first run: docker build -t jekyll-site .)
-set -e
+set -eo pipefail
 cd "$(dirname "$0")/.."
 docker image inspect jekyll-site >/dev/null 2>&1 || docker build -t jekyll-site .
 rm -rf _site && mkdir _site

@@ -1,0 +1,17 @@
+{%- assign papers = site.publications | where: "category", include.category | sort: "date" | reverse -%}
+{%- if papers.size > 0 -%}
+<div class="group">
+  {%- if include.label %}<p class="group__label">{{ include.label }}</p>{% endif %}
+  <ul class="rows">
+    {%- for post in papers %}
+    <li>
+      <a class="row" data-paper href="{{ post.url }}">
+        <span class="row__title">{{ post.title }}</span>
+        <span class="row__meta">{% if post.review_status %}<strong>{{ post.review_status | escape }}</strong> · {% endif %}{{ post.venue | escape }}</span>
+        <span class="row__year">{{ post.date | date: "%Y" }}</span>
+      </a>
+    </li>
+    {%- endfor %}
+  </ul>
+</div>
+{%- endif -%}

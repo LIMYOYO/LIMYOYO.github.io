@@ -1,12 +1,11 @@
 ---
-layout: archive
+layout: page
 title: "CV"
 permalink: /cv/
-author_profile: true
 redirect_from:
   - /resume
 ---
 
-{% include base_path %}
+The full CV is a PDF.
 
-My CV can be downloaded [here](/files/cv_zeyulin.pdf).
+<div class="actions"><a class="btn btn--primary" href="/files/cv_zeyulin.pdf">Download CV (PDF)</a></div>

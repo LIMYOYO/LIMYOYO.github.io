@@ -1,0 +1,17 @@
+---
+layout: default
+---
+<article class="section">
+  <div class="container">
+    <header class="head opens">
+      <h1>{{ page.title }}</h1>
+      {% if page.lead %}<p class="lead">{{ page.lead }}</p>{% endif %}
+    </header>
+    <div class="article">
+      {% if page.venue and page.collection == 'teaching' %}
+      <p class="article__meta">{{ page.venue }}{% if page.location %} · {{ page.location }}{% endif %}</p>
+      {% endif %}
+      <div class="prose">{{ content }}</div>
+    </div>
+  </div>
+</article>

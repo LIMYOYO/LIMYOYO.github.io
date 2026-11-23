@@ -1,0 +1,4 @@
+{%- assign p = include.paper -%}
+{%- if p.review_status and p.venue -%}<strong>{{ p.review_status | escape }}</strong> · {{ p.venue | escape }}
+{%- elsif p.venue -%}{{ p.venue | escape }}, {{ p.date | date: "%Y" }}
+{%- endif -%}

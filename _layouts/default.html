@@ -1,31 +1,54 @@
----
-layout: compress
----
-
-{% include base_path %}
-
 <!doctype html>
-<html lang="{{ site.locale | slice: 0,2 }}" class="no-js"{% if site.site_theme == "dark" %} data-theme="dark"{% endif %}>
-  <head>
-    {% include head.html %}
-    {% include head/custom.html %}
-  </head>
-
-  <body>
-
-    {% include browser-upgrade.html %}
-    {% include masthead.html %}
-
-    {{ content }}
-
-    <div class="page__footer">
-      <footer>
-        {% include footer/custom.html %}
-        {% include footer.html %}
-      </footer>
+<html lang="{{ site.locale | default: 'en' | slice: 0, 2 }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% assign page_title = page.title | default: site.title %}
+  <title>{% if page.url == '/' %}{{ site.title }}{% else %}{{ page_title | strip_html }} · {{ site.title }}{% endif %}</title>
+  <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | strip_newlines | truncate: 160 }}">
+  <link rel="canonical" href="{{ page.url | absolute_url }}">
+  <meta property="og:title" content="{{ page_title | strip_html }}">
+  <meta property="og:description" content="{{ page.excerpt | default: site.description | strip_html | strip_newlines | truncate: 160 }}">
+  <meta property="og:url" content="{{ page.url | absolute_url }}">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="/images/favicon.ico" sizes="any">
+  <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon-180x180.png">
+  <link rel="manifest" href="/images/manifest.json">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,500..800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;1,8..60,400&display=swap">
+  <link rel="stylesheet" href="/assets/css/site.css">
+  {% feed_meta %}
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="masthead">
+    <div class="container">
+      <a class="masthead__name" href="/">{{ site.author.name }}</a>
+      <nav aria-label="Main">
+        <ul>
+          <li><a href="/#research">Research</a></li>
+          <li><a href="/publications/"{% if page.url == '/publications/' or page.collection == 'publications' %} aria-current="page"{% endif %}>Papers</a></li>
+          <li><a href="/teaching/"{% if page.url == '/teaching/' or page.collection == 'teaching' %} aria-current="page"{% endif %}>Teaching</a></li>
+          <li><a href="/cv/"{% if page.url == '/cv/' %} aria-current="page"{% endif %}>CV</a></li>
+        </ul>
+      </nav>
     </div>
-
-    {% include scripts.html %}
-
-  </body>
+  </header>
+  <main id="main">
+    {{ content }}
+  </main>
+  <footer class="footer">
+    <div class="container">
+      <span>© {{ 'now' | date: '%Y' }} {{ site.author.name }} · {{ site.author.employer }}</span>
+      <ul>
+        <li><a href="mailto:{{ site.author.email }}">Email</a></li>
+        {% if site.author.googlescholar %}<li><a href="{{ site.author.googlescholar }}">Google Scholar</a></li>{% endif %}
+        {% if site.author.ssrn %}<li><a href="{{ site.author.ssrn }}">SSRN</a></li>{% endif %}
+        {% if site.author.github %}<li><a href="https://github.com/{{ site.author.github }}">GitHub</a></li>{% endif %}
+      </ul>
+    </div>
+  </footer>
+</body>
 </html>

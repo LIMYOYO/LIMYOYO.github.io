@@ -1,0 +1,27 @@
+---
+layout: default
+---
+<article class="section">
+  <div class="container">
+    <header class="opens">
+      <div class="article">
+        <h1 class="paper__title">{{ page.title }}</h1>
+        <p class="article__meta">
+          {% include paper-status.html paper=page %}
+        </p>
+      </div>
+    </header>
+    <div class="article paper__body">
+      <div class="prose">{{ content }}</div>
+      {% if page.paperurl %}
+      <div class="actions"><a class="btn btn--primary" href="{{ page.paperurl }}">Read the paper</a></div>
+      {% endif %}
+      {% if page.citation %}
+      <div class="cite">
+        <small>Cite as</small>
+        <p>{{ page.citation }}</p>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</article>
