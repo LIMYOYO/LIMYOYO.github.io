@@ -16,7 +16,7 @@ function start(figure) {
 
   const SPEED = 1.2; // simulated time units per second
   const TAU = 8; // smoothing window of the readout, in simulated time units
-  const COLS = 4;
+  const COLS = 6;
   const SIZE = 104;
   const GAP = 28;
   const ORIGIN = { x: 28, y: 24 };
@@ -41,7 +41,7 @@ function start(figure) {
   });
   const link = el('line', { class: 'sim__link' }, svg);
   const person = el('circle', { class: 'sim__person', r: 10 }, svg);
-  const home = { x: 280, y: 424 };
+  const home = { x: 410, y: 288 };
   const pos = { ...home };
 
   function draw(snap, ease) {
@@ -54,7 +54,7 @@ function start(figure) {
       r.fill.setAttribute('height', h);
     });
     const t = snap.person.target;
-    const goal = t === null ? home : { x: robots[t].x + SIZE / 2, y: robots[t].y + SIZE + 22 };
+    const goal = t === null ? home : { x: robots[t].x + SIZE / 2, y: robots[t].y + SIZE + 14 };
     pos.x += (goal.x - pos.x) * ease;
     pos.y += (goal.y - pos.y) * ease;
     person.setAttribute('cx', pos.x.toFixed(1));

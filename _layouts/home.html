@@ -1,6 +1,7 @@
 ---
 layout: default
 ---
+<style>/* Hallmark · hero: stage */</style>
 <section class="hero" id="hero">
   <div class="container">
     {% include hero.html %}
@@ -26,7 +27,7 @@ layout: default
   <div class="container">
     <header class="head">
       <h2>Papers</h2>
-      <p class="lead"><a href="/publications/">All papers</a> · <a href="{{ site.author.googlescholar }}">Google Scholar</a> · <a href="{{ site.author.ssrn }}">SSRN</a></p>
+      <ul class="lead links"><li><a href="/publications/">All papers</a></li><li><a href="{{ site.author.googlescholar }}">Google Scholar</a></li><li><a href="{{ site.author.ssrn }}">SSRN</a></li></ul>
     </header>
     {% for category in site.publication_category %}
       {% assign cat_key = category[0] %}{% assign cat_label = category[1].title %}
@@ -41,7 +42,7 @@ layout: default
       <h2>News</h2>
       <p class="lead"><a href="/news/">All news</a></p>
     </header>
-    {% include news-rows.html limit=4 %}
+    {% include news-rows.html limit=3 %}
   </div>
 </section>
 

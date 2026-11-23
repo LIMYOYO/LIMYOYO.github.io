@@ -3,6 +3,7 @@ layout: default
 title: "News"
 permalink: /news/
 ---
+<style>/* Hallmark · hero: banner */</style>
 <section class="section">
   <div class="container">
     <header class="head">

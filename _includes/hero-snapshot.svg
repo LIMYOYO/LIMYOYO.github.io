@@ -1,10 +1,16 @@
-<svg class="sim sim--still" viewBox="0 0 560 440" role="img" aria-label="Six robots: three working, two stopped and waiting, one being helped by the one person">
+<svg class="sim sim--still" viewBox="0 0 820 300" role="img" aria-label="Six robots: three working, two stopped and waiting, one being helped by the one person">
   <g class="robot"><rect class="robot__frame" x="28" y="24" width="104" height="104"/><rect class="robot__fill" x="28" y="76" width="104" height="52"/></g>
   <g class="robot is-waiting"><rect class="robot__frame" x="160" y="24" width="104" height="104"/></g>
   <g class="robot"><rect class="robot__frame" x="292" y="24" width="104" height="104"/><rect class="robot__fill" x="292" y="44" width="104" height="84"/></g>
   <g class="robot is-served"><rect class="robot__frame" x="424" y="24" width="104" height="104"/></g>
-  <g class="robot"><rect class="robot__frame" x="28" y="156" width="104" height="104"/><rect class="robot__fill" x="28" y="236" width="104" height="24"/></g>
-  <g class="robot is-waiting"><rect class="robot__frame" x="160" y="156" width="104" height="104"/></g>
-  <line class="sim__link" x1="476" y1="128" x2="476" y2="150"/>
-  <circle class="sim__person" cx="476" cy="160" r="10"/>
+  <g class="robot"><rect class="robot__frame" x="556" y="24" width="104" height="104"/><rect class="robot__fill" x="556" y="104" width="104" height="24"/></g>
+  <g class="robot is-waiting"><rect class="robot__frame" x="688" y="24" width="104" height="104"/></g>
+  <g class="robot is-empty"><rect class="robot__frame" x="28" y="156" width="104" height="104"/></g>
+  <g class="robot is-empty"><rect class="robot__frame" x="160" y="156" width="104" height="104"/></g>
+  <g class="robot is-empty"><rect class="robot__frame" x="292" y="156" width="104" height="104"/></g>
+  <g class="robot is-empty"><rect class="robot__frame" x="424" y="156" width="104" height="104"/></g>
+  <g class="robot is-empty"><rect class="robot__frame" x="556" y="156" width="104" height="104"/></g>
+  <g class="robot is-empty"><rect class="robot__frame" x="688" y="156" width="104" height="104"/></g>
+  <line class="sim__link" x1="476" y1="128" x2="476" y2="140"/>
+  <circle class="sim__person" cx="476" cy="146" r="10"/>
 </svg>

@@ -67,9 +67,9 @@ test('dark tokens defined', () => {
 
 const newsEntries = () => count(readFileSync(join(ROOT, '_data/news.yml'), 'utf8'), /^- date:/gm);
 
-test('home shows 4 newest news', () => {
+test('home shows 3 newest news', () => {
   const html = readPage('/');
-  assert.equal(count(html, /data-news-item/g), 4);
+  assert.equal(count(html, /data-news-item/g), 3);
   const first = html.slice(html.indexOf('data-news-item'));
   assert.match(first.slice(0, first.indexOf('</li>')), /Transportation Science/);
 });
@@ -159,4 +159,16 @@ test('build output has no leftovers', () => {
     assert.equal(resolveUrl('/' + p), null, `leftover in _site: ${p}`);
     assert.ok(!existsSync(join(ROOT, '_site', p)), `leftover in _site: ${p}`);
   }
+});
+
+test('hero fits one screen: robots in two rows of six', () => {
+  const html = readPage('/');
+  assert.match(html, /<svg class="sim"[^>]*viewBox="0 0 820 300"/);
+});
+
+test('three font weights at most in light mode', () => {
+  const css = readFileSync(join(ROOT, 'assets/css/site.css'), 'utf8').replace(/@media \(prefers-color-scheme: dark\)[\s\S]*?\n\}\n/, '');
+  const weights = new Set([...css.matchAll(/font-weight:\s*(\d+)/g)].map((m) => m[1]));
+  for (const m of css.matchAll(/font:\s*(\d{3})\s/g)) weights.add(m[1]);
+  assert.ok(weights.size <= 3, [...weights].join(','));
 });
