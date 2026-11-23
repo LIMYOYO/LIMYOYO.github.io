@@ -9,7 +9,7 @@ redirect_from:
 # Research section. The focus paragraph is shown large; the areas are listed as rows.
 research_title: "Intelligence and robotics in manufacturing operations"
 research_focus: >-
-  I study how AI, embodied intelligence, and robotics change what manufacturers can produce and how they organize production. I ask how firms should design production systems and allocate work between people and machines as new production methods emerge.
+  I study how AI and robots change what manufacturers make, and how work is divided between people and machines.
 research_areas_intro: >-
   In my other work, I combine analytical modeling with large-scale data analysis to study decisions such as fleet allocation, battery management, and user incentives.
 research_areas:

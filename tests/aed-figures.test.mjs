@@ -90,3 +90,13 @@ test('a panel is a self-contained SVG', () => {
   assert.match(svg, /^<svg class="aed__map"[^>]*viewBox="0 0 400 340"[^>]*role="img"[^>]*aria-label="[^"]+"/);
   assert.match(svg, /<\/svg>$/);
 });
+
+test('after the alert, circles are labelled with their reach and the ring with τ', () => {
+  const t = TIMING.pre + TIMING.grow + 0.1;
+  const st = renderPanel('static', scene('typical'), t);
+  assert.match(st, /<text class="aed__label"[^>]*>ℓˢ − d<\/text>/);
+  const mo = renderPanel('mobile', scene('typical'), t);
+  assert.match(mo, /<text class="aed__label"[^>]*>ℓᵐ<\/text>/);
+  assert.match(mo, /<text class="aed__tau"[^>]*>τ<\/text>/);
+  assert.doesNotMatch(renderPanel('mobile', scene('typical'), 0), /aed__label/);
+});

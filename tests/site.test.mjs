@@ -109,7 +109,7 @@ test('hero copy fixed', () => {
   const hero = html.slice(html.indexOf('id="hero"'), html.indexOf('id="research"'));
   assert.match(hero, new RegExp(`<h1[^>]*>\\s*${H1.replace(/[?]/g, '\\?')}\\s*</h1>`));
   assert.ok(hero.includes(STANDFIRST), 'standfirst missing');
-  assert.ok(hero.includes('An illustration, not a result.'), 'note missing');
+  assert.ok(hero.includes('An illustration of the mechanism, not a result.'), 'note missing');
 });
 
 test('hero has fallback and labels', () => {
@@ -264,4 +264,33 @@ test('the AED still frame matches the drawing code', async () => {
   for (const kind of ['static', 'mobile']) {
     assert.equal(readFileSync(join(ROOT, `_includes/aed-${kind}.svg`), 'utf8').trim(), panelSvg(kind, SCENES[0], end));
   }
+});
+
+test('no text is set smaller than 16px', () => {
+  const css = readFileSync(join(ROOT, 'assets/css/site.css'), 'utf8');
+  const rem = (v) => (v.endsWith('px') ? parseFloat(v) / 16 : parseFloat(v));
+  const sm = css.match(/--text-sm:\s*([\d.]+(?:rem|px))/)[1];
+  assert.ok(rem(sm) >= 1, `--text-sm is ${sm}`);
+  for (const m of css.matchAll(/font-size:\s*([\d.]+(?:rem|px))/g)) assert.ok(rem(m[1]) >= 1, `font-size ${m[1]}`);
+  for (const m of css.matchAll(/font:\s*\d{3}\s+([\d.]+(?:rem|px))/g)) assert.ok(rem(m[1]) >= 1, `font ${m[1]}`);
+});
+
+test('the research focus is one short sentence', () => {
+  const html = readPage('/');
+  const focus = html.match(/<p class="statement">([^<]+)<\/p>/)[1].trim();
+  assert.equal((focus.match(/[.!?](\s|$)/g) || []).length, 1, focus);
+  assert.ok(focus.split(/\s+/).length <= 25, `${focus.split(/\s+/).length} words`);
+});
+
+test('both illustrations share legend, controls bar and caption', () => {
+  const html = readPage('/');
+  const hero = html.slice(html.indexOf('id="hero"'), html.indexOf('id="lifelines"'));
+  const aed = html.slice(html.indexOf('id="lifelines"'), html.indexOf('id="research"'));
+  for (const [name, sec] of [['hero', hero], ['aed', aed]]) {
+    assert.match(sec, /<ul class="legend"/, `${name} legend`);
+    assert.match(sec, /class="figure-bar/, `${name} controls bar`);
+    assert.match(sec, /class="figure-note">An illustration of the mechanism, not a result\.</, `${name} caption`);
+  }
+  assert.match(hero, /Robot working/);
+  assert.match(hero, /Waiting for help/);
 });

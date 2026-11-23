@@ -13,10 +13,10 @@
   --text-display: clamp(3rem, 2rem + 4.4vw, 5.75rem);
   --text-display-s: clamp(2.25rem, 1.6rem + 2.6vw, 3.75rem);
   --text-section: clamp(2.5rem, 1.9rem + 2.5vw, 3.75rem);
-  --text-title: clamp(1.375rem, 1.2rem + 0.6vw, 1.75rem);
-  --text-lead: clamp(1.1875rem, 1.1rem + 0.35vw, 1.4375rem);
-  --text-md: 1.125rem;
-  --text-sm: 0.9375rem;
+  --text-title: clamp(1.5rem, 1.3rem + 0.6vw, 1.875rem);
+  --text-lead: clamp(1.25rem, 1.15rem + 0.35vw, 1.5rem);
+  --text-md: 1.1875rem;
+  --text-sm: 1rem;
 
   --space-3xs: 2px; --space-2xs: 4px; --space-xs: 8px; --space-sm: 12px; --space-md: 16px;
   --space-lg: 24px; --space-xl: 40px; --space-2xl: 64px; --space-3xl: 96px; --space-4xl: 144px;
@@ -63,7 +63,7 @@ strong, b { font-family: var(--font-display); font-weight: 500; font-variation-s
 p + p { margin-top: 1em; }
 
 small, figcaption, th, nav, label, legend, .btn, .tag, .meta {
-  font-family: var(--font-display); font-weight: 500; font-variation-settings: "opsz" 12;
+  font-family: var(--font-display); font-weight: 500; font-variation-settings: "opsz" 16;
   font-variant-numeric: lining-nums tabular-nums;
 }
 
@@ -80,7 +80,7 @@ a:hover { text-decoration-color: var(--color-accent); }
 /* Masthead */
 .masthead { border-bottom: var(--rule-hair) solid var(--color-rule); }
 .masthead .container { display: flex; align-items: center; justify-content: space-between; gap: var(--space-lg); min-height: 64px; flex-wrap: wrap; }
-.masthead__name { font-family: var(--font-display); font-weight: 800; font-variation-settings: "wdth" 75, "opsz" 24; font-size: 1.375rem; color: var(--color-ink); text-decoration: none; letter-spacing: -0.01em; }
+.masthead__name { font-family: var(--font-display); font-weight: 800; font-variation-settings: "wdth" 75, "opsz" 24; font-size: 1.5rem; color: var(--color-ink); text-decoration: none; letter-spacing: -0.01em; }
 .masthead nav ul { display: flex; gap: var(--space-lg); list-style: none; margin: 0; padding: 0; font-size: var(--text-sm); }
 .masthead nav a { text-decoration-color: transparent; padding-block: var(--space-sm); display: inline-block; }
 .masthead nav a:hover, .masthead nav a[aria-current="page"] { text-decoration-color: var(--color-accent); }
@@ -102,8 +102,8 @@ a:hover { text-decoration-color: var(--color-accent); }
 .row { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 2fr) minmax(0, 3.5fr) 9ch 4ch; gap: var(--gap-columns); align-items: baseline; padding-block: var(--space-lg); text-decoration: none; color: inherit; }
 a.row:hover .row__title, a.row__title:hover { text-decoration: underline; text-decoration-color: var(--color-accent); text-decoration-thickness: 2px; text-underline-offset: 0.15em; }
 .row__title { font-family: var(--font-display); font-weight: 800; font-variation-settings: "wdth" 75, "opsz" 48; font-size: var(--text-title); line-height: 1.1; color: var(--color-ink); letter-spacing: -0.005em; text-decoration: none; }
-.row__area { font-family: var(--font-display); font-weight: 500; font-variation-settings: "opsz" 12; font-size: var(--text-sm); color: var(--color-muted); }
-.row__out { font-family: var(--font-display); font-weight: 500; font-variation-settings: "opsz" 12; font-size: var(--text-sm); }
+.row__area { font-family: var(--font-display); font-weight: 500; font-variation-settings: "opsz" 16; font-size: var(--text-sm); color: var(--color-muted); }
+.row__out { font-family: var(--font-display); font-weight: 500; font-variation-settings: "opsz" 16; font-size: var(--text-sm); }
 .row__meta { font-size: var(--text-sm); color: var(--color-ink-2); }
 .row__meta strong { color: var(--color-ink); }
 .row__year { font-size: var(--text-sm); color: var(--color-muted); text-align: right; }
@@ -133,7 +133,7 @@ input:disabled, button:disabled { opacity: 0.45; cursor: not-allowed; }
 .prose p + p { margin-top: 1em; }
 .prose h2 { font-size: var(--text-title); margin: var(--space-xl) 0 var(--space-sm); }
 .cite { margin-top: var(--space-2xl); padding-top: var(--space-lg); border-top: var(--rule-hair) solid var(--color-rule); font-size: var(--text-sm); }
-.cite p { font-family: var(--font-body); font-size: 1rem; color: var(--color-ink-2); }
+.cite p { font-family: var(--font-body); font-size: 1.0625rem; color: var(--color-ink-2); }
 @media (max-width: 60rem) { .article > * { grid-column: 1 / -1; } }
 
 /* Footer */
@@ -159,7 +159,7 @@ input:disabled, button:disabled { opacity: 0.45; cursor: not-allowed; }
 
 /* News rows */
 .news__item { display: grid; grid-template-columns: minmax(8ch, 2fr) minmax(0, 10fr); gap: var(--gap-columns); padding-block: var(--space-lg); align-items: baseline; }
-.news__date { font-family: var(--font-display); font-weight: 500; font-variation-settings: "opsz" 12; font-size: var(--text-sm); color: var(--color-muted); font-variant-numeric: lining-nums tabular-nums; }
+.news__date { font-family: var(--font-display); font-weight: 500; font-variation-settings: "opsz" 16; font-size: var(--text-sm); color: var(--color-muted); font-variant-numeric: lining-nums tabular-nums; }
 .news__text { max-width: 72ch; }
 @media (max-width: 48rem) { .news__item { grid-template-columns: 1fr; gap: var(--space-2xs); } }
 
@@ -169,7 +169,7 @@ input:disabled, button:disabled { opacity: 0.45; cursor: not-allowed; }
 .about__photo { grid-column: 1 / span 4; width: 100%; aspect-ratio: 1; object-fit: cover; outline: 1px solid color-mix(in oklab, var(--color-ink) 8%, transparent); outline-offset: -1px; }
 .about__text { grid-column: 6 / -1; }
 .about__text h2 { margin-bottom: var(--space-lg); }
-.contact { list-style: none; margin: var(--space-xl) 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-xs) var(--space-lg); font-family: var(--font-display); font-weight: 500; font-variation-settings: "opsz" 12; font-size: var(--text-sm); }
+.contact { list-style: none; margin: var(--space-xl) 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-xs) var(--space-lg); font-family: var(--font-display); font-weight: 500; font-variation-settings: "opsz" 16; font-size: var(--text-sm); }
 @media (max-width: 60rem) { .about__photo { grid-column: 1 / span 6; } .about__text { grid-column: 1 / -1; } }
 
 /* Hero */
@@ -196,7 +196,7 @@ input:disabled, button:disabled { opacity: 0.45; cursor: not-allowed; }
 .sim__link { stroke: var(--color-accent); stroke-width: 1.5; }
 .sim__play { display: flex; gap: var(--space-sm); align-self: end; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
-.sim__controls { display: flex; flex-wrap: wrap; align-items: end; gap: var(--space-lg) var(--space-xl); margin-top: var(--space-xl); padding-top: var(--space-lg); border-top: var(--rule-hair) solid var(--color-rule-2); }
+.figure-bar { display: flex; flex-wrap: wrap; align-items: end; gap: var(--space-lg) var(--space-xl); margin-top: var(--space-lg); padding-top: var(--space-lg); border-top: var(--rule-hair) solid var(--color-rule-2); }
 .sim__control { border: 0; margin: 0; padding: 0; min-width: 0; }
 .sim__control > label, .sim__control > legend { display: block; font-size: var(--text-sm); color: var(--color-ink); padding: 0; margin-bottom: var(--space-xs); }
 .sim__range { display: flex; align-items: center; gap: var(--space-sm); }
@@ -208,8 +208,7 @@ input:disabled, button:disabled { opacity: 0.45; cursor: not-allowed; }
 .sim__choices input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
 .sim__choices label:has(input:checked) { background: var(--color-ink); color: var(--color-paper); }
 .sim__choices label:has(input:focus-visible) { outline: 2px solid var(--color-focus); outline-offset: 2px; }
-.sim__readout { margin-top: var(--space-lg); font-family: var(--font-display); font-weight: 500; font-variation-settings: "opsz" 12; font-size: var(--text-lead); color: var(--color-ink); font-variant-numeric: lining-nums tabular-nums; }
-.hero__figure figcaption { margin-top: var(--space-xs); font-size: var(--text-sm); color: var(--color-muted); }
+.sim__readout { margin-top: var(--space-md); font-family: var(--font-display); font-weight: 500; font-variation-settings: "opsz" 16; font-size: var(--text-md); color: var(--color-ink); font-variant-numeric: lining-nums tabular-nums; }
 @media (max-width: 60rem) {
   .hero__grid { grid-template-columns: 1fr; gap: var(--space-xl); min-height: 0; }
   .hero__text h1 { max-width: 14ch; }
@@ -224,19 +223,13 @@ input:disabled, button:disabled { opacity: 0.45; cursor: not-allowed; }
 /* Moving Lifelines illustration */
 .aed__scene { margin: 0 0 var(--space-xl); font-size: var(--text-lead); color: var(--color-ink-2); max-width: 70ch; min-height: 3.2em; }
 .aed__scene strong { color: var(--color-ink); }
-.aed__step { font-family: var(--font-display); font-weight: 500; font-variation-settings: "opsz" 12; font-size: var(--text-sm); color: var(--color-muted); margin-right: var(--space-xs); font-variant-numeric: lining-nums tabular-nums; }
+.aed__step { font-family: var(--font-display); font-weight: 500; font-variation-settings: "opsz" 16; font-size: var(--text-sm); color: var(--color-muted); margin-right: var(--space-xs); font-variant-numeric: lining-nums tabular-nums; }
 .aed__panels { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-2xl); }
 .aed__panel { margin: 0; }
 .aed__panel figcaption h3 { margin-bottom: var(--space-xs); }
 .aed__panel figcaption p { font-size: var(--text-sm); color: var(--color-ink-2); max-width: 46ch; min-height: 3em; }
 .aed__map { width: 100%; height: auto; margin-top: var(--space-md); border-top: var(--rule-hair) solid var(--color-rule); border-bottom: var(--rule-hair) solid var(--color-rule); }
-.aed__outcome { margin-top: var(--space-sm); font-family: var(--font-display); font-weight: 500; font-variation-settings: "opsz" 12; font-size: var(--text-sm); color: var(--color-ink); min-height: 1.6em; }
-.aed__foot { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-lg); margin-top: var(--space-xl); padding-top: var(--space-lg); border-top: var(--rule-hair) solid var(--color-rule-2); }
-.aed__legend { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-xs) var(--space-lg); font-family: var(--font-display); font-weight: 500; font-variation-settings: "opsz" 12; font-size: var(--text-sm); color: var(--color-ink-2); }
-.aed__legend li { display: inline-flex; align-items: center; gap: var(--space-xs); }
-.aed__legend svg { width: 22px; height: 22px; display: inline-block; overflow: visible; }
-.aed__controls { display: flex; gap: var(--space-sm); }
-.aed__note { margin-top: var(--space-sm); font-size: var(--text-sm); color: var(--color-muted); }
+.aed__outcome { margin-top: var(--space-md); font-family: var(--font-display); font-weight: 500; font-variation-settings: "opsz" 16; font-size: var(--text-md); line-height: 1.35; color: var(--color-ink); min-height: 2.7em; }
 @media (max-width: 60rem) { .aed__panels { grid-template-columns: 1fr; gap: var(--space-xl); } }
 
 .aed__reach { fill: var(--color-paper-2); stroke: var(--color-ink-2); stroke-width: 1; stroke-dasharray: 4 4; }
@@ -261,8 +254,8 @@ input:disabled, button:disabled { opacity: 0.45; cursor: not-allowed; }
 .is-failed.aed__walker { color: var(--color-miss); }
 .aed__car.is-responding.is-arrived rect { fill: var(--color-accent); stroke: var(--color-accent); }
 .aed__car.is-responding.is-failed rect { fill: var(--color-miss); stroke: var(--color-miss); }
-.aed__legend .is-arrived circle, .aed__legend .is-arrived path { fill: var(--color-accent); }
-.aed__legend .is-failed circle, .aed__legend .is-failed path { fill: var(--color-miss); }
+.legend .is-arrived circle, .legend .is-arrived path { fill: var(--color-accent); }
+.legend .is-failed circle, .legend .is-failed path { fill: var(--color-miss); }
 .aed__heart { fill: var(--color-ink); }
 .aed__pulse { fill: none; stroke: var(--color-paper); stroke-width: 1.4; stroke-linejoin: round; }
 .aed__clock-track { fill: none; stroke: var(--color-rule); stroke-width: 3; }
@@ -271,3 +264,16 @@ input:disabled, button:disabled { opacity: 0.45; cursor: not-allowed; }
 .aed__patient.is-in-time .aed__clock { stroke: var(--color-accent); }
 .aed__patient.is-missed .aed__heart { fill: var(--color-miss); }
 .aed__patient.is-missed .aed__clock { stroke: var(--color-miss); }
+
+/* Shared figure parts: both homepage illustrations */
+.hero__figure svg.sim, .aed__map { border-top: var(--rule-hair) solid var(--color-rule); border-bottom: var(--rule-hair) solid var(--color-rule); padding-block: var(--space-md); }
+.legend { list-style: none; margin: var(--space-md) 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-xs) var(--space-lg); font-family: var(--font-display); font-weight: 500; font-variation-settings: "opsz" 16; font-size: var(--text-sm); color: var(--color-ink-2); }
+.legend li { display: inline-flex; align-items: center; gap: var(--space-xs); }
+.legend svg { width: 22px; height: 22px; display: inline-block; overflow: visible; }
+.legend .legend__robot { width: 28px; height: 28px; }
+.legend__robot .robot__body { stroke-width: 4; }
+.legend__robot .robot__alert { stroke-width: 6; }
+.figure-note { margin-top: var(--space-sm); font-family: var(--font-display); font-weight: 500; font-variation-settings: "opsz" 16; font-size: var(--text-sm); color: var(--color-muted); }
+.aed__radius { stroke: var(--color-ink-2); stroke-width: 1; }
+.aed__label, .aed__tau { font-family: var(--font-display); font-weight: 500; font-variation-settings: "opsz" 16; font-size: 17px; fill: var(--color-ink); }
+.aed__tau { font-family: var(--font-body); font-style: italic; font-size: 19px; }

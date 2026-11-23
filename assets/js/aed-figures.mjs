@@ -20,10 +20,10 @@ function phase(t) {
   };
 }
 
-const volunteer = (x, y, cls) => `<g class="aed__volunteer ${cls}" transform="translate(${f1(x)} ${f1(y)})"><circle cy="-6" r="3.4"/><path d="M-6 6V3.5C-6-1 6-1 6 3.5V6Z"/></g>`;
-const aedBox = (x, y, cls = '') => `<g class="aed__aed${cls}" transform="translate(${f1(x)} ${f1(y)})"><rect x="-8" y="-8" width="16" height="16"/><path d="M-4 0H4M0-4V4"/></g>`;
+const volunteer = (x, y, cls) => `<g class="aed__volunteer ${cls}" transform="translate(${f1(x)} ${f1(y)}) scale(1.3)"><circle cy="-6" r="3.4"/><path d="M-6 6V3.5C-6-1 6-1 6 3.5V6Z"/></g>`;
+const aedBox = (x, y, cls = '') => `<g class="aed__aed${cls}" transform="translate(${f1(x)} ${f1(y)}) scale(1.2)"><rect x="-8" y="-8" width="16" height="16"/><path d="M-4 0H4M0-4V4"/></g>`;
 function car(x, y, cls, busy) {
-  return `<g class="aed__car ${cls}" transform="translate(${f1(x)} ${f1(y)})"><rect x="-11" y="-6" width="22" height="12"/>`
+  return `<g class="aed__car ${cls}" transform="translate(${f1(x)} ${f1(y)}) scale(1.2)"><rect x="-11" y="-6" width="22" height="12"/>`
     + (busy ? '<circle class="aed__passenger" r="2.6"/>' : '') + '</g>';
 }
 function patient(ph, result) {
@@ -31,10 +31,20 @@ function patient(ph, result) {
   const remaining = ph.alert ? 1 - ph.f : 1;
   return `<g class="aed__patient${cls}" transform="translate(${PATIENT.x} ${PATIENT.y})">`
     + (ph.alert ? `<circle class="aed__clock-track" r="${RING}"/><circle class="aed__clock" r="${RING}" transform="rotate(-90)" stroke-dasharray="${f1(RING_LEN)}" stroke-dashoffset="${f1(RING_LEN * (1 - remaining))}"/>` : '')
-    + '<circle class="aed__heart" r="7"/><path class="aed__pulse" d="M-5 0H-2L-1-3 1 3 2 0H5"/>'
+    + (ph.alert ? `<text class="aed__tau" x="${RING + 6}" y="${-RING + 4}">τ</text>` : '')
+    + '<circle class="aed__heart" r="8"/><path class="aed__pulse" d="M-5.5 0H-2.2L-1-3.4 1 3.4 2.2 0H5.5"/>'
     + '</g>';
 }
 
+// A radius drawn from a circle's centre at angle a (radians), labelled at its outer end.
+function radiusLabel(c, r, a, label) {
+  const x = c.x + r * Math.cos(a);
+  const y = c.y + r * Math.sin(a);
+  const lx = c.x + (r + 10) * Math.cos(a);
+  const ly = c.y + (r + 10) * Math.sin(a);
+  const anchor = Math.cos(a) >= 0 ? 'start' : 'end';
+  return `<line class="aed__radius" x1="${c.x}" y1="${c.y}" x2="${f1(x)}" y2="${f1(y)}"/><text class="aed__label" x="${f1(lx)}" y="${f1(ly)}" text-anchor="${anchor}">${label}</text>`;
+}
 const pts = (list) => list.map((p) => `${f1(p.x)},${f1(p.y)}`).join(' ');
 // Arrivals gather in a small ring around the patient so they do not hide each other.
 const gather = (i, n) => {
@@ -56,6 +66,10 @@ export function renderPanel(kind, scene, t) {
   if (kind === 'static') {
     const { circles, inRange, routes } = solveStatic(scene);
     if (ph.alert) for (const { site, r } of circles) if (r > 0) out.push(`<circle class="aed__reach" cx="${site.x}" cy="${site.y}" r="${f1(r * ph.grow)}"/>`);
+    if (ph.alert && ph.grow >= 1) {
+      const big = circles.filter((c) => c.r > 0).sort((a, b) => b.r - a.r)[0];
+      if (big) out.push(radiusLabel(big.site, big.r, -2.3, 'ℓˢ − d'));
+    }
     const states = routes.map((r) => staticPathAt(r, ph.f));
     if (racing && ph.f > 0) {
       routes.forEach((r, i) => {
@@ -76,12 +90,13 @@ export function renderPanel(kind, scene, t) {
       }
       const at = states[i];
       const p = at.arrived ? gather(k++, nArrived) : at.point;
-      out.push(`<g class="aed__walker${at.carrying ? ' is-carrying' : ''}${status(at.arrived, ph)}" transform="translate(${f1(p.x)} ${f1(p.y)})"><circle cy="-6" r="3.4"/><path d="M-6 6V3.5C-6-1 6-1 6 3.5V6Z"/>`
+      out.push(`<g class="aed__walker${at.carrying ? ' is-carrying' : ''}${status(at.arrived, ph)}" transform="translate(${f1(p.x)} ${f1(p.y)}) scale(1.3)"><circle cy="-6" r="3.4"/><path d="M-6 6V3.5C-6-1 6-1 6 3.5V6Z"/>`
         + (at.carrying ? '<g class="aed__carried" transform="translate(8 1)"><rect x="-4" y="-4" width="8" height="8"/><path d="M-2 0H2M0-2V2"/></g>' : '') + '</g>');
     });
   } else {
     const { routes } = solveMobile(scene);
     if (ph.alert) out.push(`<circle class="aed__reach" cx="${PATIENT.x}" cy="${PATIENT.y}" r="${f1(REACH.drive * ph.grow)}"/>`);
+    if (ph.alert && ph.grow >= 1) out.push(radiusLabel(PATIENT, REACH.drive, -1.75, 'ℓᵐ'));
     const tAlert = t - TIMING.pre;
     const states = new Map(routes.map((r) => [r.car, mobilePathAt(r, ph.f)]));
     if (racing && ph.f > 0) {
