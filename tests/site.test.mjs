@@ -191,3 +191,10 @@ test('public papers link out from the lists; unpublished ones do not', () => {
     for (const slug of none) assert.doesNotMatch(rowOf(slug), /href="https?:/, `${slug} links out on ${url}`);
   }
 });
+
+test('CV page shows the PDF inline and offers a download', () => {
+  const html = readPage('/cv/');
+  assert.match(html, /<object[^>]*data="\/files\/cv_zeyulin\.pdf[^"]*"[^>]*type="application\/pdf"/);
+  assert.match(html, /<a[^>]*href="\/files\/cv_zeyulin\.pdf"[^>]*download/);
+  assert.match(html, /<a[^>]*href="\/files\/cv_zeyulin\.pdf"[^>]*target="_blank"/);
+});

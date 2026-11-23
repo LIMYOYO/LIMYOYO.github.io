@@ -201,3 +201,8 @@ input:disabled, button:disabled { opacity: 0.45; cursor: not-allowed; }
   .hero__grid { grid-template-columns: 1fr; gap: var(--space-xl); min-height: 0; }
   .hero__text h1 { max-width: 14ch; }
 }
+
+/* CV viewer */
+.cv-viewer { display: block; width: 100%; height: min(85vh, 1100px); border: var(--rule-hair) solid var(--color-rule-2); background: var(--color-paper-2); }
+.cv-fallback { padding: var(--space-xl); }
+@media (max-width: 48rem) { .cv-viewer { display: none; } }
