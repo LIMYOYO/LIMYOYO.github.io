@@ -102,3 +102,16 @@ export function createSim({ robots = 6, mode = 'scattered', seed } = {}) {
     stats: () => ({ robotsWaiting: Math.min(1, Math.max(0, waitingAvg)), personBusy: Math.min(1, Math.max(0, busyAvg)) }),
   };
 }
+
+// Turns elapsed wall-clock seconds into a whole number of sim steps of size dt, at `speed`
+// sim units per second, carrying the remainder so the pace does not depend on frame rate.
+// A stall longer than a second (a hiccup, a debugger pause) is capped at one second.
+export function createClock({ speed, dt }) {
+  let carry = 0;
+  return (seconds) => {
+    carry += Math.min(Math.max(0, seconds), 1) * speed;
+    const steps = Math.floor(carry / dt + 1e-9);
+    carry -= steps * dt;
+    return steps;
+  };
+}

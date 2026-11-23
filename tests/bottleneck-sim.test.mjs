@@ -109,3 +109,27 @@ test('both timings ask for about the same help per unit of work', () => {
     assert.ok(ratio > 0.85 && ratio < 1.18, `${robots} robots: help-per-work ratio ${ratio.toFixed(2)}`);
   }
 });
+
+import { createClock } from '../assets/js/bottleneck-sim.mjs';
+
+test('clock runs in real time whatever the frame rate', () => {
+  for (const hz of [30, 60, 120, 144]) {
+    const clock = createClock({ speed: 1.2, dt: 0.1 });
+    let steps = 0;
+    for (let f = 0; f < hz; f++) steps += clock(1 / hz);
+    assert.ok(Math.abs(steps - 12) <= 1, `${hz} Hz: ${steps} steps in one second`);
+  }
+});
+
+test('clock caps a long pause instead of jumping ahead', () => {
+  const clock = createClock({ speed: 1.2, dt: 0.1 });
+  assert.ok(clock(30) <= 12);
+  assert.equal(clock(0), 0);
+});
+
+test('clock keeps real time on a slow device (2.5 frames per second)', () => {
+  const clock = createClock({ speed: 1.2, dt: 0.1 });
+  let steps = 0;
+  for (let f = 0; f < 5; f++) steps += clock(0.4);
+  assert.ok(Math.abs(steps - 24) <= 1, `${steps} steps in two seconds`);
+});

@@ -114,20 +114,24 @@ test('hero copy fixed', () => {
 
 test('hero has fallback and labels', () => {
   const html = readPage('/');
-  assert.match(html, /<noscript>[\s\S]*?<svg[\s\S]*?<\/noscript>/);
+  const hero = html.slice(html.indexOf('id="hero"'), html.indexOf('id="research"'));
+  assert.match(hero, /<svg class="sim"[^>]*>[\s\S]*class="robot is-working"[\s\S]*class="person"/, 'still frame is in the page without JS');
   assert.match(html, /<label for="robots">Robots per person<\/label>/);
   assert.match(html, /<input[^>]*type="range"[^>]*id="robots"[^>]*min="1"[^>]*max="12"[^>]*value="6"/);
   assert.match(html, /<legend>When help is needed<\/legend>/);
   assert.match(html, /name="timing"[^>]*value="scattered"/);
   assert.match(html, /name="timing"[^>]*value="bursts"/);
-  assert.match(html, /data-readout[^>]*aria-live="polite"|aria-live="polite"[^>]*data-readout/);
+  assert.match(html, /<button[^>]*class="[^"]*sim__toggle[^"]*"[^>]*>Pause<\/button>/);
+  assert.doesNotMatch(html, /sim__toggle[^>]*aria-pressed/);
+  assert.match(html, /data-readout[^>]*aria-live="off"|aria-live="off"[^>]*data-readout/);
+  assert.match(html, /class="sr-only"[^>]*aria-live="polite"[^>]*data-announce|data-announce[^>]*aria-live="polite"/);
   assert.match(html, /<script type="module" src="\/assets\/js\/bottleneck\.js"><\/script>/);
 });
 
 test('no results or names leak', () => {
   const home = readPage('/');
   const hero = home.slice(home.indexOf('id="hero"'), home.indexOf('id="research"'));
-  const scripts = ['bottleneck.js', 'bottleneck-sim.mjs'].map((f) => readFileSync(join(ROOT, 'assets/js', f), 'utf8')).join('\n');
+  const scripts = ['bottleneck.js', 'bottleneck-sim.mjs', 'bottleneck-figures.mjs'].map((f) => readFileSync(join(ROOT, 'assets/js', f), 'utf8')).join('\n');
   for (const text of [hero, scripts]) {
     assert.doesNotMatch(text, /quadrant|replacement ratio|substitution|we find|our results|\bMing\b/i);
   }
@@ -163,7 +167,12 @@ test('build output has no leftovers', () => {
 
 test('hero fits one screen: robots in two rows of six', () => {
   const html = readPage('/');
-  assert.match(html, /<svg class="sim"[^>]*viewBox="0 0 820 300"/);
+  assert.match(html, /<svg class="sim"[^>]*viewBox="0 0 792 330"/);
+});
+
+test('the included still frame matches the drawing code', async () => {
+  const { snapshotSvg } = await import('../assets/js/bottleneck-figures.mjs');
+  assert.equal(readFileSync(join(ROOT, '_includes/hero-snapshot.svg'), 'utf8').trim(), snapshotSvg().trim());
 });
 
 test('three font weights at most in light mode', () => {
