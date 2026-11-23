@@ -31,6 +31,10 @@ Add a Markdown file to `_publications/`. Copy an existing one and change its fro
 
 The body of the file is the abstract shown on the paper's page.
 
+## Update the CV
+
+Edit `cv-source/cv_zeyulin.tex`, then run `tools/build-cv.sh` (needs MacTeX's `pdflatex`). It writes `files/cv_zeyulin.pdf`, which the CV page shows and offers for download.
+
 ## Edit the homepage
 
 The research text, research areas and the About paragraph live in `_pages/about.md`. The interactive figure at the top is in `_includes/hero.html` and `assets/js/`.

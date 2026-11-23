@@ -1,0 +1,184 @@
+% Zeyu Lin | Academic CV for the personal website
+% Build: tools/build-cv.sh  (pdflatex; writes files/cv_zeyulin.pdf)
+\documentclass[11pt,letterpaper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=0.65in,top=0.55in,bottom=0.6in]{geometry}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{tabularx}
+\usepackage{fancyhdr}
+\usepackage{needspace}
+\usepackage[hidelinks]{hyperref}
+
+% ---------- Details ----------
+\newcommand{\ContactEmail}{zeyulin.lin@mail.utoronto.ca}
+\newcommand{\Website}{limyoyo.github.io}
+\newcommand{\Updated}{November 2026}
+
+% ---------- Appearance ----------
+\definecolor{Accent}{HTML}{1F5C3F}
+\definecolor{Muted}{HTML}{555555}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlength{\emergencystretch}{2em}
+\urlstyle{same}
+\raggedbottom
+
+\titleformat{\section}{\large\bfseries\color{Accent}}{}{0pt}{}[\vspace{2pt}\titlerule]
+\titlespacing*{\section}{0pt}{9pt}{5pt}
+
+\setlist[itemize]{leftmargin=1.25em, label=\textbullet, itemsep=1pt, topsep=2pt, parsep=0pt, partopsep=0pt}
+\setlist[enumerate]{leftmargin=2em, label={[\arabic*]}, itemsep=3pt, topsep=2pt, parsep=0pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[L]{\small\color{Muted}Zeyu Lin \enspace|\enspace Curriculum Vitae \enspace|\enspace Updated \Updated}
+\fancyfoot[R]{\small\color{Muted}\thepage}
+\setlength{\footskip}{22pt}
+
+\hypersetup{pdftitle={Zeyu Lin - Curriculum Vitae}, pdfauthor={Zeyu Lin}}
+
+% Entry: title, dates, then an italic subtitle line.
+\newcommand{\entry}[3]{%
+  \Needspace{4\baselineskip}%
+  \begin{tabularx}{\linewidth}{@{}Xr@{}}
+    \textbf{#1} & {\small #2}
+  \end{tabularx}\par
+  {\small\itshape #3\par}
+}
+\newcommand{\me}{\textbf{Zeyu Lin}}
+
+\begin{document}
+
+\begin{center}
+  {\fontsize{25}{28}\selectfont\bfseries Zeyu Lin}\par
+  \vspace{4pt}
+  {\small Rotman School of Management, University of Toronto \enspace|\enspace Toronto, ON}\par
+  \vspace{2pt}
+  {\small \href{mailto:\ContactEmail}{\ContactEmail} \enspace|\enspace \href{https://\Website}{\Website}}\par
+\end{center}
+\vspace{-4pt}
+
+\section*{Education}
+
+\entry{University of Toronto, Rotman School of Management}{Sep 2026--Present}
+  {Ph.D. student in Management (Operations Management and Statistics) \enspace|\enspace Advisor: Ming Hu}
+\vspace{5pt}
+
+\entry{Shanghai Jiao Tong University}{Sep 2023--Aug 2026}
+  {M.S. in Industrial Engineering \enspace|\enspace Advisors: Yaoming Zhou, Tangbin Xia}
+\vspace{5pt}
+
+\entry{Shanghai Jiao Tong University}{Sep 2019--Jun 2023}
+  {B.E. in Industrial Engineering \enspace|\enspace GPA 3.7/4.3 (87/100, top 15 of 58)}
+
+\section*{Research Interests}
+
+Intelligence and robotics in manufacturing operations: how AI, embodied intelligence and robotics change what manufacturers can produce, how production is organized, and how work is divided between people and machines. Also shared mobility and on-demand platforms, network competition and game theory, and healthcare operations.
+
+\section*{Working Papers}
+
+\begin{enumerate}
+  \item \me, W. Liu, J. Zhang, and M. E. H. Ong. ``Moving Lifelines: Fixed Sites or Mobile Fleets for Volunteer-Enabled Emergency Medical Device Delivery?''
+    \textit{Major Revision} at \textit{Management Science}. \href{https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7119321}{SSRN 7119321}.
+  \item R. Guan, \me, Y. Zhou, and J.-B. Sheu. ``Towards Sustainable Urban Mobility: User-Collaborative Battery Swapping for Shared Electric Micromobility.''
+    \textit{Major Revision} at \textit{Transportation Science}.
+  \item \me, Y. Zhou, and Y.-J. Chen. ``Who Benefit from Crowd-Sourcing in Rental Network Competition.''
+    \textit{Reject \& Resubmit (Invited)} at \textit{Manufacturing \& Service Operations Management}.
+\end{enumerate}
+
+\section*{Journal Publications}
+
+\begin{enumerate}[resume]
+  \item R. Guan, \me, Y. Zhou, and Z. Zhu (2025). ``User-Based Relocation for E-Bike Sharing Systems Through Power-Level Recommendation.''
+    \textit{IEEE Transactions on Intelligent Transportation Systems} 26(9). \href{https://doi.org/10.1109/TITS.2025.3564359}{doi:10.1109/TITS.2025.3564359}.
+  \item Y. Zhou, \me, R. Guan, and J.-B. Sheu (2023). ``Dynamic Battery Swapping and Rebalancing Strategies for E-Bike Sharing Systems.''
+    \textit{Transportation Research Part B: Methodological} 177. \href{https://doi.org/10.1016/j.trb.2023.102820}{doi:10.1016/j.trb.2023.102820}.
+\end{enumerate}
+
+\section*{Presentations}
+
+\entry{INFORMS Annual Meeting, San Francisco}{Nov 2026}
+  {Mobile AEDs on Ride-Hailing Fleets: When Should Cities Move Beyond Static Deployment?}
+
+\section*{Research Experience}
+
+\entry{Volunteer-Enabled Emergency Medical Device Delivery}{2026--Present}
+  {With W. Liu (CUHK), J. Zhang (Cornell) and M. E. H. Ong (NUS and Singapore General Hospital)}
+\begin{itemize}
+  \item Built a stochastic spatial model comparing fixed-site AED deployment, which needs a two-leg responder trip, with AEDs carried on taxi and ride-hailing fleets, which are limited by fleet idleness.
+  \item Derived computable thresholds for when static, mobile or hybrid deployment is optimal, and calibrated the model with more than ten datasets for New York City and Singapore.
+\end{itemize}
+\vspace{2pt}
+
+\entry{Proactive Dispatching for Semiconductor OHT Systems}{Dec 2025--Present}
+  {Supervisor: Prof. Zuo-Jun (Max) Shen \enspace|\enspace The University of Hong Kong \enspace|\enspace Industry partner: TCL}
+\begin{itemize}
+  \item Developed a proactive empty-vehicle repositioning strategy for overhead hoist transport (OHT) scheduling in semiconductor fabrication, pre-positioning idle vehicles at future demand nodes to reduce system latency.
+\end{itemize}
+\vspace{2pt}
+
+\entry{Crowd-Sourcing in Rental Network Competition}{Jun 2023--Present}
+  {Supervisors: Prof. Ying-Ju Chen and Prof. Yaoming Zhou \enspace|\enspace Shanghai Jiao Tong University}
+\begin{itemize}
+  \item Built a networked Cournot model of competition under crowd-sourced labor in rental networks, comparing firm, crowd and dual sourcing for firm profits, labor surplus and consumer surplus.
+  \item Independently completed model formulation, derivations, coding and manuscript writing.
+\end{itemize}
+\vspace{2pt}
+
+\entry{E-Bike Allocation Optimization in Competitive Markets}{Sep 2023--Present}
+  {Supervisor: Prof. Yaoming Zhou \enspace|\enspace Industry partner: HelloBike}
+\begin{itemize}
+  \item Developed a reinforcement-learning allocation strategy for a competitive e-bike sharing market, using real-time competitor fleet positions collected by Bluetooth sniffing, with HelloBike (Shanghai) providing data access and validation.
+\end{itemize}
+\vspace{2pt}
+
+\entry{User-Based Relocation for E-Bike Sharing Systems}{Sep 2023--May 2025}
+  {Supervisor: Prof. Yaoming Zhou \enspace|\enspace Shanghai Jiao Tong University}
+\begin{itemize}
+  \item Designed a user-incentive mechanism with power-level recommendations to complement staff-based relocation; formulated a multi-battery-state Markov model and a variable neighborhood search algorithm, with profit gains of up to 12.6\% on real-world data.
+\end{itemize}
+\vspace{2pt}
+
+\entry{Staff-Based Relocation and Swapping for E-Bike Sharing Systems}{Sep 2021--Nov 2023}
+  {Supervisors: Prof. Jiuh-Biing Sheu and Prof. Yaoming Zhou \enspace|\enspace Shanghai Jiao Tong University}
+\begin{itemize}
+  \item Integrated e-bike relocation and battery swapping in one Markov-chain model of fleet size and battery levels; proposed an adaptive one-step strategy and a rolling-horizon strategy with over 20\% profit improvement against industrial baselines in simulation on real-world data.
+\end{itemize}
+
+\section*{Teaching Experience}
+
+\entry{Teaching Assistant, Production System Modeling and Simulation}{2024--2026}
+  {Shanghai Jiao Tong University, School of Mechanical Engineering}
+\begin{itemize}
+  \item Graded assignments, held office hours and tutorials, and mentored student projects in production-system modeling and simulation. The course was featured in \href{https://news.sjtu.edu.cn/ztzl_aijyzl/20260508/222473.html}{SJTU News} (May 2026).
+\end{itemize}
+
+\section*{Data Assets}
+
+\entry{Large-Scale Private Shared Micromobility Dataset}{2023--Present}
+  {More than 50\,GB of continuously updated, high-frequency bike and e-bike data across three rival platforms in Xiamen, China}
+
+\section*{Honors and Awards}
+
+\begin{tabularx}{\linewidth}{@{}Xr@{}}
+  Scholarship, School of Mechanical Engineering, SJTU & 2024 \\
+  First Prize, China Mechanical Engineering Innovation and Creativity Competition & 2023 \\
+  Scholarship, Chun-Tsung Scientific Research Fund & 2021 \\
+  First Prize, China Industrial Engineering Application Case Competition & 2021 \\
+  Second Prize, Contemporary Undergraduate Mathematical Contest in Modeling (CUMCM) & 2021 \\
+  First Prize, Toyota Cup National Industrial Engineering Innovation Competition & 2020 \\
+\end{tabularx}
+
+\section*{Skills}
+
+\textbf{Programming:} Python, PyTorch, Gurobi, C++, Git, \LaTeX. \enspace \textbf{Languages:} Mandarin (native); English (IELTS 7.5).
+
+\end{document}

@@ -89,5 +89,6 @@ exclude:
   - docs
   - tests
   - tools
+  - cv-source
   - vendor
   - node_modules
