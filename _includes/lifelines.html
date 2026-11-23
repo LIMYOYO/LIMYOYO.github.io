@@ -1,0 +1,37 @@
+<section class="section aed" id="lifelines" aria-labelledby="lifelines-title">
+  <div class="container">
+    <header class="head opens">
+      <h2 id="lifelines-title">Who brings the AED in time?</h2>
+      <p class="lead">Two ways to get a defibrillator to a cardiac arrest within the window τ. From my paper <a href="/publication/2026-ssrn-moving-lifelines"><cite>Moving Lifelines</cite></a>.</p>
+    </header>
+    <p class="aed__scene" data-aed-scene><span class="aed__step" data-aed-count>1 of 3</span> <strong data-aed-title>A typical call.</strong> <span data-aed-note>A volunteer near an AED fetches it in time; an idle car nearby drives straight in.</span></p>
+    <div class="aed__panels" data-aed>
+      <figure class="aed__panel">
+        <figcaption><h3>Fixed-site AED</h3><p>Walk to an AED, then carry it in. A volunteer must start inside that AED’s circle.</p></figcaption>
+        {% include aed-static.svg %}
+        <p class="aed__outcome" data-aed-outcome="static" aria-live="off">In time.</p>
+      </figure>
+      <figure class="aed__panel">
+        <figcaption><h3>Vehicle-carried AED</h3><p>Drive straight in. Any car inside the circle can make it, if it has no passenger.</p></figcaption>
+        {% include aed-mobile.svg %}
+        <p class="aed__outcome" data-aed-outcome="mobile" aria-live="off">In time.</p>
+      </figure>
+    </div>
+    <div class="aed__foot">
+      <ul class="aed__legend" aria-label="Map key">
+        <li><svg viewBox="-12 -12 24 24" aria-hidden="true"><g class="aed__volunteer is-in-range"><circle cy="-6" r="3.4"/><path d="M-6 6V3.5C-6-1 6-1 6 3.5V6Z"/></g></svg>Volunteer in range</li>
+        <li><svg viewBox="-12 -12 24 24" aria-hidden="true"><g class="aed__volunteer is-out-of-range"><circle cy="-6" r="3.4"/><path d="M-6 6V3.5C-6-1 6-1 6 3.5V6Z"/></g></svg>Out of range</li>
+        <li><svg viewBox="-14 -10 28 20" aria-hidden="true"><g class="aed__car is-available"><rect x="-11" y="-6" width="22" height="12"/></g></svg>Idle car</li>
+        <li><svg viewBox="-14 -10 28 20" aria-hidden="true"><g class="aed__car is-busy"><rect x="-11" y="-6" width="22" height="12"/><circle class="aed__passenger" r="2.6"/></g></svg>Busy car</li>
+        <li><svg viewBox="-12 -12 24 24" aria-hidden="true"><g class="aed__aed"><rect x="-8" y="-8" width="16" height="16"/><path d="M-4 0H4M0-4V4"/></g></svg>AED</li>
+      </ul>
+      <div class="aed__controls" data-aed-controls hidden>
+        <button type="button" class="btn" data-aed-toggle>Pause</button>
+        <button type="button" class="btn" data-aed-next>Next scene</button>
+      </div>
+    </div>
+    <p class="aed__note">An illustration of the mechanism, not a result.</p>
+    <p class="sr-only" aria-live="polite" data-aed-announce></p>
+  </div>
+</section>
+<script type="module" src="/assets/js/aed.js"></script>

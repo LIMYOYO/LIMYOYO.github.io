@@ -192,7 +192,7 @@ test('public papers link out from the lists; unpublished ones do not', () => {
   for (const url of ['/', '/publications/']) {
     const html = readPage(url).replaceAll('&amp;', '&');
     const rowOf = (slug) => {
-      const at = html.indexOf(`href="/publication/${slug}"`);
+      const at = html.indexOf(`data-paper href="/publication/${slug}"`);
       assert.ok(at > -1, `${slug} missing on ${url}`);
       return html.slice(html.lastIndexOf('<li', at), html.indexOf('</li>', at));
     };
@@ -219,7 +219,7 @@ test('paper rows show their research area', () => {
   for (const url of ['/', '/publications/']) {
     const html = readPage(url);
     for (const [slug, area] of Object.entries(areas)) {
-      const at = html.indexOf(`href="/publication/${slug}"`);
+      const at = html.indexOf(`data-paper href="/publication/${slug}"`);
       const row = html.slice(html.lastIndexOf('<li', at), html.indexOf('</li>', at));
       assert.match(row, new RegExp(`class="row__area"[^>]*>${area}<`), `${slug} on ${url}`);
     }
@@ -233,5 +233,35 @@ test('news docs state the real homepage count', () => {
     const m = readFileSync(join(ROOT, f), 'utf8').match(/homepage shows the first (\d+)/);
     assert.ok(m, `${f} does not say how many`);
     assert.equal(m[1], limit, `${f} says ${m[1]}, homepage shows ${words[limit] ?? limit}`);
+  }
+});
+
+test('the AED illustration sits after the hero and before research', () => {
+  const html = readPage('/');
+  const at = ['id="hero"', 'id="lifelines"', 'id="research"'].map((s) => html.indexOf(s));
+  assert.ok(at.every((i) => i > -1), String(at));
+  assert.deepEqual([...at].sort((a, b) => a - b), at);
+});
+
+test('the AED illustration has two still maps, labels and controls', () => {
+  const html = readPage('/');
+  const sec = html.slice(html.indexOf('id="lifelines"'), html.indexOf('id="research"'));
+  assert.equal(count(sec, /<svg class="aed__map"/g), 2);
+  assert.match(sec, /data-aed-panel="static"/);
+  assert.match(sec, /data-aed-panel="mobile"/);
+  assert.match(sec, /<h2[^>]*>Who brings the AED in time\?<\/h2>/);
+  assert.match(sec, /<button[^>]*data-aed-toggle[^>]*>Pause<\/button>/);
+  assert.match(sec, /<button[^>]*data-aed-next[^>]*>Next scene<\/button>/);
+  assert.match(sec, /data-aed-title/);
+  assert.match(sec, /href="\/publication\/2026-ssrn-moving-lifelines"/);
+  assert.match(sec, /<script type="module" src="\/assets\/js\/aed\.js"><\/script>/);
+});
+
+test('the AED still frame matches the drawing code', async () => {
+  const { SCENES } = await import('../assets/js/aed-scenes.mjs');
+  const { panelSvg, TIMING } = await import('../assets/js/aed-figures.mjs');
+  const end = TIMING.pre + TIMING.grow + TIMING.tau + 0.01;
+  for (const kind of ['static', 'mobile']) {
+    assert.equal(readFileSync(join(ROOT, `_includes/aed-${kind}.svg`), 'utf8').trim(), panelSvg(kind, SCENES[0], end));
   }
 });
