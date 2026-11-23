@@ -3,7 +3,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { readPage, allHtml, ROOT } from './lib/site.mjs';
+import { readPage, allHtml, internalLinks, resolveUrl, count, ROOT } from './lib/site.mjs';
 
 const FONTS = 'https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,500..800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;1,8..60,400&display=swap';
 
@@ -63,4 +63,40 @@ test('paper page shows status', () => {
 test('dark tokens defined', () => {
   const css = readFileSync(join(ROOT, 'assets/css/site.css'), 'utf8');
   assert.match(css, /prefers-color-scheme:\s*dark/);
+});
+
+const newsEntries = () => count(readFileSync(join(ROOT, '_data/news.yml'), 'utf8'), /^- date:/gm);
+
+test('home shows 4 newest news', () => {
+  const html = readPage('/');
+  assert.equal(count(html, /data-news-item/g), 4);
+  const first = html.slice(html.indexOf('data-news-item'));
+  assert.match(first.slice(0, first.indexOf('</li>')), /Transportation Science/);
+});
+
+test('news page shows all', () => {
+  const html = readPage('/news/');
+  assert.equal(newsEntries(), 6);
+  assert.equal(count(html, /data-news-item/g), newsEntries());
+});
+
+test('news markdown renders', () => {
+  assert.match(readPage('/news/'), /<strong>Major Revision<\/strong>/);
+});
+
+test('home links all papers', () => {
+  assert.equal(count(readPage('/'), /data-paper/g), 5);
+});
+
+test('home sections in order', () => {
+  const html = readPage('/');
+  const at = ['hero', 'research', 'papers', 'news', 'about'].map((id) => html.indexOf(`id="${id}"`));
+  for (const i of at) assert.ok(i > -1, `section missing: ${at}`);
+  assert.deepEqual([...at].sort((a, b) => a - b), at);
+});
+
+test('all internal links resolve', () => {
+  for (const { path, html } of allHtml()) {
+    for (const u of internalLinks(html)) assert.notEqual(resolveUrl(u), null, `${u} in ${path}`);
+  }
 });

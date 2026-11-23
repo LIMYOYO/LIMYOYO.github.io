@@ -1,0 +1,63 @@
+---
+layout: default
+---
+<section class="hero" id="hero">
+  <div class="container">
+    {% include hero.html %}
+  </div>
+</section>
+
+<section class="section" id="research">
+  <div class="container">
+    <div class="opens research">
+      <h2 class="research__title">{{ page.research_title }}</h2>
+      <p class="statement">{{ page.research_focus }}</p>
+    </div>
+    <div class="research__more">
+      <p class="research__intro">{{ page.research_areas_intro }}</p>
+      <ul class="rows rows--light">
+        {% for area in page.research_areas %}<li class="area">{{ area }}</li>{% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="papers">
+  <div class="container">
+    <header class="head">
+      <h2>Papers</h2>
+      <p class="lead"><a href="/publications/">All papers</a> · <a href="{{ site.author.googlescholar }}">Google Scholar</a> · <a href="{{ site.author.ssrn }}">SSRN</a></p>
+    </header>
+    {% for category in site.publication_category %}
+      {% assign cat_key = category[0] %}{% assign cat_label = category[1].title %}
+      {% include paper-rows.html category=cat_key label=cat_label %}
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section" id="news">
+  <div class="container">
+    <header class="head">
+      <h2>News</h2>
+      <p class="lead"><a href="/news/">All news</a></p>
+    </header>
+    {% include news-rows.html limit=4 %}
+  </div>
+</section>
+
+<section class="section about" id="about">
+  <div class="container about__grid">
+    <img class="about__photo" src="/images/{{ site.author.avatar }}" alt="Portrait of {{ site.author.name }}" width="480" height="480" loading="lazy">
+    <div class="about__text">
+      <h2>About</h2>
+      <div class="prose">{{ content }}</div>
+      <ul class="contact">
+        <li><a href="mailto:{{ site.author.email }}">{{ site.author.email }}</a></li>
+        <li><a href="{{ site.author.googlescholar }}">Google Scholar</a></li>
+        <li><a href="{{ site.author.ssrn }}">SSRN</a></li>
+        <li><a href="https://github.com/{{ site.author.github }}">GitHub</a></li>
+        <li>{{ site.author.location }}</li>
+      </ul>
+    </div>
+  </div>
+</section>
