@@ -172,3 +172,22 @@ test('three font weights at most in light mode', () => {
   for (const m of css.matchAll(/font:\s*(\d{3})\s/g)) weights.add(m[1]);
   assert.ok(weights.size <= 3, [...weights].join(','));
 });
+
+test('public papers link out from the lists; unpublished ones do not', () => {
+  const out = {
+    '2026-ssrn-moving-lifelines': 'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7119321',
+    '2023-trb-ebike-staff-relocation': 'https://doi.org/10.1016/j.trb.2023.102820',
+    '2025-tits-ebike-user-relocation': 'https://doi.org/10.1109/TITS.2025.3564359',
+  };
+  const none = ['2025-trb-user-collaborative-swapping', '2025-msom-crowdsourcing-rental'];
+  for (const url of ['/', '/publications/']) {
+    const html = readPage(url).replaceAll('&amp;', '&');
+    const rowOf = (slug) => {
+      const at = html.indexOf(`href="/publication/${slug}"`);
+      assert.ok(at > -1, `${slug} missing on ${url}`);
+      return html.slice(html.lastIndexOf('<li', at), html.indexOf('</li>', at));
+    };
+    for (const [slug, href] of Object.entries(out)) assert.ok(rowOf(slug).includes(`href="${href}"`), `${slug} has no outbound link on ${url}`);
+    for (const slug of none) assert.doesNotMatch(rowOf(slug), /href="https?:/, `${slug} links out on ${url}`);
+  }
+});

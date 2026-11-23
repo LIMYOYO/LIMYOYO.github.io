@@ -4,12 +4,11 @@
   {%- if include.label %}<p class="group__label">{{ include.label }}</p>{% endif %}
   <ul class="rows">
     {%- for post in papers %}
-    <li>
-      <a class="row" data-paper href="{{ post.url }}">
-        <span class="row__title">{{ post.title }}</span>
-        <span class="row__meta">{% if post.review_status %}<strong>{{ post.review_status | escape }}</strong> · {% endif %}{{ post.venue | escape }}</span>
-        <span class="row__year">{{ post.date | date: "%Y" }}</span>
-      </a>
+    <li class="row">
+      <a class="row__title" data-paper href="{{ post.url }}">{{ post.title }}</a>
+      <span class="row__meta">{% if post.review_status %}<strong>{{ post.review_status | escape }}</strong> · {% endif %}{{ post.venue | escape }}</span>
+      <span class="row__out">{% if post.paperurl %}<a href="{{ post.paperurl }}" aria-label="Read “{{ post.title | escape }}”{% if post.paperurl contains 'ssrn' %} on SSRN{% endif %}">{% if post.paperurl contains 'ssrn' %}SSRN{% else %}Paper{% endif %} ↗</a>{% endif %}</span>
+      <span class="row__year">{{ post.date | date: "%Y" }}</span>
     </li>
     {%- endfor %}
   </ul>
