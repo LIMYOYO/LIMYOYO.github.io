@@ -1,1 +1,30 @@
-{%- comment -%} Filled in by the interactive hero task. {%- endcomment -%}
+<div class="hero__grid">
+  <div class="hero__text">
+    <h1>When machines do the work, who becomes the bottleneck?</h1>
+    <p class="hero__lead">I study how AI and robots change the work people still do — and when the person who checks, repairs, and steps in becomes the constraint.</p>
+  </div>
+  <figure class="hero__figure" data-sim>
+    <svg class="sim" viewBox="0 0 560 440" role="img" aria-label="Robots work, stop when they need help, and one person helps them one at a time" hidden></svg>
+    <noscript>{% include hero-snapshot.svg %}</noscript>
+    <div class="sim__controls" hidden>
+      <div class="sim__control">
+        <label for="robots">Robots per person</label>
+        <div class="sim__range">
+          <input type="range" id="robots" min="1" max="12" value="6" step="1" autocomplete="off">
+          <output for="robots" id="robots-value">6</output>
+        </div>
+      </div>
+      <fieldset class="sim__control">
+        <legend>When help is needed</legend>
+        <div class="sim__choices">
+          <label><input type="radio" name="timing" value="scattered" autocomplete="off" checked> Scattered</label>
+          <label><input type="radio" name="timing" value="bursts" autocomplete="off"> In bursts</label>
+        </div>
+      </fieldset>
+      <button type="button" class="btn sim__step" hidden>Step</button>
+    </div>
+    <p class="sim__readout" data-readout aria-live="polite" hidden></p>
+    <figcaption>An illustration, not a result.</figcaption>
+  </figure>
+</div>
+<script type="module" src="/assets/js/bottleneck.js"></script>

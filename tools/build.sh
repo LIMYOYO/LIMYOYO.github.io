@@ -5,7 +5,7 @@
 set -eo pipefail
 cd "$(dirname "$0")/.."
 docker image inspect jekyll-site >/dev/null 2>&1 || docker build -t jekyll-site .
-rm -rf _site && mkdir _site
+mkdir -p _site && find _site -mindepth 1 -delete
 tar -c --exclude=./_site --exclude=./.git --exclude=./.superpowers --exclude=./.jekyll-cache . \
   | docker run --rm -i jekyll-site sh -c '
       mkdir -p /tmp/src && tar -x -C /tmp/src && cd /tmp/src &&

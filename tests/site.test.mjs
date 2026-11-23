@@ -100,3 +100,47 @@ test('all internal links resolve', () => {
     for (const u of internalLinks(html)) assert.notEqual(resolveUrl(u), null, `${u} in ${path}`);
   }
 });
+
+const H1 = 'When machines do the work, who becomes the bottleneck?';
+const STANDFIRST = 'I study how AI and robots change the work people still do — and when the person who checks, repairs, and steps in becomes the constraint.';
+
+test('hero copy fixed', () => {
+  const html = readPage('/');
+  const hero = html.slice(html.indexOf('id="hero"'), html.indexOf('id="research"'));
+  assert.match(hero, new RegExp(`<h1[^>]*>\\s*${H1.replace(/[?]/g, '\\?')}\\s*</h1>`));
+  assert.ok(hero.includes(STANDFIRST), 'standfirst missing');
+  assert.ok(hero.includes('An illustration, not a result.'), 'note missing');
+});
+
+test('hero has fallback and labels', () => {
+  const html = readPage('/');
+  assert.match(html, /<noscript>[\s\S]*?<svg[\s\S]*?<\/noscript>/);
+  assert.match(html, /<label for="robots">Robots per person<\/label>/);
+  assert.match(html, /<input[^>]*type="range"[^>]*id="robots"[^>]*min="1"[^>]*max="12"[^>]*value="6"/);
+  assert.match(html, /<legend>When help is needed<\/legend>/);
+  assert.match(html, /name="timing"[^>]*value="scattered"/);
+  assert.match(html, /name="timing"[^>]*value="bursts"/);
+  assert.match(html, /data-readout[^>]*aria-live="polite"|aria-live="polite"[^>]*data-readout/);
+  assert.match(html, /<script type="module" src="\/assets\/js\/bottleneck\.js"><\/script>/);
+});
+
+test('no results or names leak', () => {
+  for (const { path, html } of allHtml()) assert.doesNotMatch(html, /\bMing\b/, path);
+  const home = readPage('/');
+  const hero = home.slice(home.indexOf('id="hero"'), home.indexOf('id="research"'));
+  const scripts = ['bottleneck.js', 'bottleneck-sim.mjs'].map((f) => readFileSync(join(ROOT, 'assets/js', f), 'utf8')).join('\n');
+  for (const text of [hero, scripts]) {
+    assert.doesNotMatch(text, /quadrant|replacement ratio|substitution|we find|our results|\bMing\b/i);
+  }
+});
+
+test('hidden attribute always hides', () => {
+  const css = readFileSync(join(ROOT, 'assets/css/site.css'), 'utf8');
+  assert.match(css, /\[hidden\]\s*\{\s*display:\s*none\s*!important;?\s*\}/);
+});
+
+test('hero controls opt out of form restoration', () => {
+  const html = readPage('/');
+  assert.match(html, /<input[^>]*id="robots"[^>]*autocomplete="off"/);
+  assert.equal(count(html, /name="timing"[^>]*autocomplete="off"/g), 2);
+});
