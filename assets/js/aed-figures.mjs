@@ -35,77 +35,90 @@ function patient(ph, result) {
     + '</g>';
 }
 
-// Result once known: true = arrived in time, false = missed, null = still running.
-function staticResult(route, ph) {
+const pts = (list) => list.map((p) => `${f1(p.x)},${f1(p.y)}`).join(' ');
+// Arrivals gather in a small ring around the patient so they do not hide each other.
+const gather = (i, n) => {
+  const a = -Math.PI / 2 + (2 * Math.PI * i) / Math.max(n, 1);
+  return { x: PATIENT.x + 30 * Math.cos(a), y: PATIENT.y + 30 * Math.sin(a) };
+};
+// Status of one responder at fraction f of τ: moving, arrived (in time), or failed (window closed first).
+const status = (arrived, ph) => (arrived ? ' is-arrived' : ph.over ? ' is-failed' : '');
+// Patient result: true once anyone has arrived, false if the window closed with nobody, null while running.
+function patientResult(anyArrived, ph) {
   if (!ph.alert || ph.grow < 1) return null;
-  if (route) return staticPathAt(route, ph.f).arrived ? true : (ph.over ? false : null);
-  return ph.over ? false : null;
-}
-function mobileResult(route, ph) {
-  if (!ph.alert || ph.grow < 1) return null;
-  if (route) return mobilePathAt(route, ph.f).arrived ? true : (ph.over ? false : null);
-  return ph.over ? false : null;
+  return anyArrived ? true : ph.over ? false : null;
 }
 
 export function renderPanel(kind, scene, t) {
   const ph = phase(t);
+  const racing = ph.alert && ph.grow >= 1;
   const out = [];
   if (kind === 'static') {
-    const { circles, inRange, route } = solveStatic(scene);
+    const { circles, inRange, routes } = solveStatic(scene);
     if (ph.alert) for (const { site, r } of circles) if (r > 0) out.push(`<circle class="aed__reach" cx="${site.x}" cy="${site.y}" r="${f1(r * ph.grow)}"/>`);
-    if (route && ph.grow >= 1 && ph.f > 0) {
-      const at = staticPathAt(route, ph.f);
-      const pts = at.carrying ? [route.volunteer, route.site, at.point] : [route.volunteer, at.point];
-      out.push(`<polyline class="aed__trail" points="${pts.map((p) => `${f1(p.x)},${f1(p.y)}`).join(' ')}"/>`);
+    const states = routes.map((r) => staticPathAt(r, ph.f));
+    if (racing && ph.f > 0) {
+      routes.forEach((r, i) => {
+        const at = states[i];
+        const line = at.carrying ? [r.volunteer, r.site, at.point] : [r.volunteer, at.point];
+        out.push(`<polyline class="aed__trail${status(at.arrived, ph)}" points="${pts(line)}"/>`);
+      });
     }
-    scene.sites.forEach((s) => out.push(aedBox(s.x, s.y, route && ph.f > 0 && s === route.site && staticPathAt(route, ph.f).carrying ? ' is-taken' : '')));
-    scene.volunteers.forEach((v, i) => {
-      if (route && ph.grow >= 1 && ph.f > 0 && v === route.volunteer) return;
-      out.push(volunteer(v.x, v.y, !ph.alert || ph.grow < 1 ? 'is-idle' : inRange[i] ? 'is-in-range' : 'is-out-of-range'));
+    scene.sites.forEach((site) => out.push(aedBox(site.x, site.y)));
+    out.push(patient(ph, patientResult(states.some((x) => x.arrived) && racing, ph)));
+    const nArrived = states.filter((x) => x.arrived).length;
+    let k = 0;
+    routes.forEach((r, i) => {
+      if (!racing || ph.f === 0) {
+        const v = r.volunteer;
+        out.push(volunteer(v.x, v.y, !racing ? 'is-idle' : inRange[i] ? 'is-in-range' : 'is-out-of-range'));
+        return;
+      }
+      const at = states[i];
+      const p = at.arrived ? gather(k++, nArrived) : at.point;
+      out.push(`<g class="aed__walker${at.carrying ? ' is-carrying' : ''}${status(at.arrived, ph)}" transform="translate(${f1(p.x)} ${f1(p.y)})"><circle cy="-6" r="3.4"/><path d="M-6 6V3.5C-6-1 6-1 6 3.5V6Z"/>`
+        + (at.carrying ? '<g class="aed__carried" transform="translate(8 1)"><rect x="-4" y="-4" width="8" height="8"/><path d="M-2 0H2M0-2V2"/></g>' : '') + '</g>');
     });
-    out.push(patient(ph, staticResult(route, ph)));
-    if (route && ph.grow >= 1 && ph.f > 0) {
-      const at = staticPathAt(route, ph.f);
-      out.push(`<g class="aed__walker${at.carrying ? ' is-carrying' : ''}" transform="translate(${f1(at.point.x)} ${f1(at.point.y)})"><circle cy="-7" r="4"/><path d="M-7 7V4C-7-1 7-1 7 4V7Z"/>`
-        + (at.carrying ? '<g class="aed__carried" transform="translate(9 2)"><rect x="-4.5" y="-4.5" width="9" height="9"/><path d="M-2.2 0H2.2M0-2.2V2.2"/></g>' : '') + '</g>');
-    }
   } else {
-    const { inCircle, route } = solveMobile(scene);
+    const { routes } = solveMobile(scene);
     if (ph.alert) out.push(`<circle class="aed__reach" cx="${PATIENT.x}" cy="${PATIENT.y}" r="${f1(REACH.drive * ph.grow)}"/>`);
     const tAlert = t - TIMING.pre;
-    let driver = null;
-    if (route && ph.grow >= 1 && ph.f > 0) {
-      const at = mobilePathAt(route, ph.f);
-      driver = at.point;
-      out.push(`<line class="aed__trail" x1="${route.car.x}" y1="${route.car.y}" x2="${f1(at.point.x)}" y2="${f1(at.point.y)}"/>`);
+    const states = new Map(routes.map((r) => [r.car, mobilePathAt(r, ph.f)]));
+    if (racing && ph.f > 0) {
+      routes.forEach((r) => {
+        const at = states.get(r.car);
+        out.push(`<line class="aed__trail${status(at.arrived, ph)}" x1="${r.car.x}" y1="${r.car.y}" x2="${f1(at.point.x)}" y2="${f1(at.point.y)}"/>`);
+      });
     }
-    scene.cars.forEach((c, i) => {
-      if (driver && c === route.car) return;
-      const frozen = route && c === route.car && ph.alert;
-      const p = frozen ? c : carAt(c, tAlert);
-      const reach = !ph.alert || ph.grow < 1 ? '' : inCircle[i] ? ' is-within' : ' is-beyond';
-      out.push(car(p.x, p.y, (c.busy ? 'is-busy' : 'is-available') + reach, c.busy));
+    out.push(patient(ph, patientResult([...states.values()].some((x) => x.arrived) && racing, ph)));
+    const nArrived = [...states.values()].filter((x) => x.arrived).length;
+    let k = 0;
+    scene.cars.forEach((c) => {
+      if (c.busy) { const p = carAt(c, tAlert); out.push(car(p.x, p.y, 'is-busy', true)); return; }
+      if (!ph.alert) { const p = carAt(c, tAlert); out.push(car(p.x, p.y, 'is-available', false)); return; }
+      const at = states.get(c);
+      const moving = racing && ph.f > 0;
+      const p = moving ? (at.arrived ? gather(k++, nArrived) : at.point) : c;
+      out.push(car(p.x, p.y, `is-responding${moving ? status(at.arrived, ph) : ''}`, false));
     });
-    out.push(patient(ph, mobileResult(route, ph)));
-    if (driver) out.push(car(driver.x, driver.y, 'is-dispatched', false));
   }
   return out.join('');
 }
 
 export function outcomeText(kind, scene, t) {
   const ph = phase(t);
+  if (!ph.over) return '';
   if (kind === 'static') {
-    const { route } = solveStatic(scene);
-    const r = staticResult(route, ph);
-    if (r === true) return `In time: arrives at ${Math.round(staticPathAt(route, 1).arrivedAt * 100)}% of the window.`;
-    if (r === false) return 'Missed. No volunteer can fetch an AED and reach the patient in time.';
-    return '';
+    const { routes } = solveStatic(scene);
+    const ok = routes.filter((r) => r.ok).length;
+    if (ok === 0) return 'No volunteer arrives in time: none starts inside a pickup circle.';
+    return `${ok} of ${routes.length} volunteers arrive in time. The others start too far from an AED.`;
   }
-  const { route } = solveMobile(scene);
-  const r = mobileResult(route, ph);
-  if (r === true) return `In time: arrives at ${Math.round(mobilePathAt(route, 1).arrivedAt * 100)}% of the window.`;
-  if (r === false) return 'Missed. Every car within reach is busy with a passenger.';
-  return '';
+  const { routes } = solveMobile(scene);
+  const ok = routes.filter((r) => r.ok).length;
+  const busy = scene.cars.filter((c) => c.busy).length;
+  if (ok === 0) return `No car arrives in time: every car within reach is busy (${busy} busy).`;
+  return `${ok} of ${routes.length} idle cars arrive in time. ${busy} busy cars cannot respond.`;
 }
 
 const LABELS = {

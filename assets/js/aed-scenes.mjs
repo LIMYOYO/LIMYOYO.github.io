@@ -17,7 +17,7 @@ export const SCENES = [
   {
     id: 'typical',
     title: 'A typical call',
-    note: 'A volunteer near an AED fetches it in time; an idle car nearby drives straight in.',
+    note: 'Some volunteers and cars make it in time, others do not.',
     sites: [{ x: 150, y: 140 }, { x: 290, y: 215 }],
     volunteers: [{ x: 110, y: 110 }, { x: 300, y: 235 }, { x: 60, y: 250 }, { x: 335, y: 85 }, { x: 230, y: 305 }],
     cars: [
@@ -49,33 +49,35 @@ export const SCENES = [
   },
 ];
 
+// Every volunteer responds: each heads for the AED that gives the shortest two-leg trip.
+// It arrives in time (ok) exactly when that trip fits within the walking reach.
 export function solveStatic(scene) {
   const circles = scene.sites.map((site) => {
     const d = dist(site, PATIENT);
     return { site, r: d < REACH.walk ? REACH.walk - d : 0 };
   });
   const inRange = scene.volunteers.map((v) => circles.some(({ site, r }) => r > 0 && dist(v, site) <= r));
-  let route = null;
-  for (const volunteer of scene.volunteers) {
-    for (const { site, r } of circles) {
-      if (r <= 0 || dist(volunteer, site) > r) continue;
+  const routes = scene.volunteers.map((volunteer) => {
+    let best = null;
+    for (const site of scene.sites) {
       const leg1 = dist(volunteer, site);
       const leg2 = dist(site, PATIENT);
-      if (!route || leg1 + leg2 < route.distance) route = { volunteer, site, leg1, leg2, distance: leg1 + leg2 };
+      if (!best || leg1 + leg2 < best.distance) best = { volunteer, site, leg1, leg2, distance: leg1 + leg2 };
     }
-  }
-  return { circles, inRange, route };
+    return { ...best, ok: best.distance <= REACH.walk + 1e-9 };
+  });
+  return { circles, inRange, routes };
 }
 
+// Every idle car responds by driving straight in; it arrives in time exactly when inside the driving circle.
+// Busy cars are carrying a passenger and do not respond.
 export function solveMobile(scene) {
   const inCircle = scene.cars.map((c) => dist(c, PATIENT) <= REACH.drive);
-  let route = null;
-  scene.cars.forEach((car, i) => {
-    if (!inCircle[i] || car.busy) return;
+  const routes = scene.cars.filter((c) => !c.busy).map((car) => {
     const d = dist(car, PATIENT);
-    if (!route || d < route.distance) route = { car, distance: d };
+    return { car, distance: d, ok: d <= REACH.drive + 1e-9 };
   });
-  return { inCircle, route };
+  return { inCircle, routes };
 }
 
 const lerp = (a, b, f) => ({ x: a.x + (b.x - a.x) * f, y: a.y + (b.y - a.y) * f });

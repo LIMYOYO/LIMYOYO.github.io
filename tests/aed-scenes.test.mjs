@@ -12,8 +12,45 @@ test('there are three scenes: typical call, far AEDs, rush hour', () => {
 test('each scene produces the outcome its caption claims', () => {
   const expected = { typical: [true, true], 'far-aeds': [false, true], 'rush-hour': [true, false] };
   for (const s of SCENES) {
-    assert.equal(solveStatic(s).route !== null, expected[s.id][0], `${s.id} static`);
-    assert.equal(solveMobile(s).route !== null, expected[s.id][1], `${s.id} mobile`);
+    assert.equal(solveStatic(s).routes.some((r) => r.ok), expected[s.id][0], `${s.id} static`);
+    assert.equal(solveMobile(s).routes.some((r) => r.ok), expected[s.id][1], `${s.id} mobile`);
+  }
+});
+
+test('every volunteer responds, heading for the AED with the shortest two-leg trip', () => {
+  for (const s of SCENES) {
+    const { routes } = solveStatic(s);
+    assert.equal(routes.length, s.volunteers.length, s.id);
+    routes.forEach((r) => {
+      for (const site of s.sites) assert.ok(r.distance <= dist(r.volunteer, site) + dist(site, PATIENT) + 1e-9);
+    });
+  }
+});
+
+test('a volunteer arrives in time exactly when starting inside a pickup circle', () => {
+  for (const s of SCENES) {
+    const { routes, inRange } = solveStatic(s);
+    routes.forEach((r, i) => assert.equal(r.ok, inRange[i], `${s.id} volunteer ${i}`));
+  }
+});
+
+test('the typical call has volunteers and idle cars that make it and ones that do not', () => {
+  const s = SCENES.find((x) => x.id === 'typical');
+  const st = solveStatic(s).routes;
+  const mo = solveMobile(s).routes;
+  assert.ok(st.some((r) => r.ok) && st.some((r) => !r.ok));
+  assert.ok(mo.some((r) => r.ok) && mo.some((r) => !r.ok));
+});
+
+test('every idle car drives; it arrives exactly when inside the driving circle; busy cars do not respond', () => {
+  for (const s of SCENES) {
+    const { routes, inCircle } = solveMobile(s);
+    const idle = s.cars.filter((c) => !c.busy);
+    assert.equal(routes.length, idle.length, s.id);
+    routes.forEach((r) => {
+      assert.ok(!r.car.busy);
+      assert.equal(r.ok, inCircle[s.cars.indexOf(r.car)], s.id);
+    });
   }
 });
 
@@ -51,21 +88,16 @@ test('rush hour: several cars inside the driving circle, all busy', () => {
   assert.ok(inside.every((c) => c.busy));
 });
 
-test('chosen routes fit within reach and are the shortest feasible ones', () => {
-  for (const s of SCENES) {
-    const st = solveStatic(s).route;
-    if (st) assert.ok(st.distance <= REACH.walk + 1e-9, s.id);
-    const mo = solveMobile(s).route;
-    if (mo) {
-      assert.ok(mo.distance <= REACH.drive + 1e-9, s.id);
-      for (const c of s.cars) if (!c.busy && dist(c, PATIENT) <= REACH.drive) assert.ok(dist(c, PATIENT) >= mo.distance - 1e-9);
-    }
-  }
+test('a volunteer out of range is still on the way when the window closes', () => {
+  const s = SCENES.find((x) => x.id === 'far-aeds');
+  const r = solveStatic(s).routes[0];
+  const end = staticPathAt(r, 1);
+  assert.ok(!end.arrived && dist(end.point, PATIENT) > 1);
 });
 
 test('the walker goes to the AED first, then to the patient, and arrives within the window', () => {
   const s = SCENES.find((x) => x.id === 'typical');
-  const route = solveStatic(s).route;
+  const route = solveStatic(s).routes.find((r) => r.ok);
   assert.deepEqual(staticPathAt(route, 0).point, route.volunteer);
   const atSite = route.leg1 / REACH.walk;
   const mid = staticPathAt(route, atSite);
@@ -78,7 +110,7 @@ test('the walker goes to the AED first, then to the patient, and arrives within 
 
 test('the dispatched car drives straight to the patient within the window', () => {
   const s = SCENES.find((x) => x.id === 'typical');
-  const route = solveMobile(s).route;
+  const route = solveMobile(s).routes.find((r) => r.ok);
   const half = mobilePathAt(route, 0.25);
   assert.ok(Math.abs(dist(half.point, route.car) - 0.25 * REACH.drive) < 1e-6);
   const end = mobilePathAt(route, 1);

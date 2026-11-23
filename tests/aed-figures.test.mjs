@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { SCENES } from '../assets/js/aed-scenes.mjs';
+import { SCENES, solveStatic, solveMobile } from '../assets/js/aed-scenes.mjs';
 import { TIMING, renderPanel, outcomeText, panelSvg } from '../assets/js/aed-figures.mjs';
 
 const scene = (id) => SCENES.find((s) => s.id === id);
@@ -31,12 +31,34 @@ test('cars are drawn busy (with a passenger) or available, from the start', () =
   assert.ok(count(mo, /class="aed__car is-available/g) >= 1);
 });
 
-test('the walker carries the AED on the second leg', () => {
+test('everyone responds at once: all volunteers and all idle cars move', () => {
   const s = scene('typical');
-  const late = renderPanel('static', s, TIMING.pre + TIMING.grow + TIMING.tau * 0.75);
-  assert.match(late, /class="aed__walker is-carrying"/);
-  const early = renderPanel('static', s, TIMING.pre + TIMING.grow + TIMING.tau * 0.1);
-  assert.match(early, /class="aed__walker"/);
+  const t = TIMING.pre + TIMING.grow + TIMING.tau * 0.3;
+  const st = renderPanel('static', s, t);
+  assert.equal(count(st, /class="aed__walker/g), s.volunteers.length);
+  const mo = renderPanel('mobile', s, t);
+  assert.equal(count(mo, /class="aed__car is-responding/g), s.cars.filter((c) => !c.busy).length);
+  assert.equal(count(mo, /class="aed__car is-busy/g), s.cars.filter((c) => c.busy).length);
+});
+
+test('when the window closes, arrivals are green and the rest are red', () => {
+  for (const s of SCENES) {
+    const st = renderPanel('static', s, END);
+    const okS = solveStatic(s).routes.filter((r) => r.ok).length;
+    assert.equal(count(st, /aed__walker[^"]*is-arrived/g), okS, s.id);
+    assert.equal(count(st, /aed__walker[^"]*is-failed/g), s.volunteers.length - okS, s.id);
+    const mo = renderPanel('mobile', s, END);
+    const routes = solveMobile(s).routes;
+    const okM = routes.filter((r) => r.ok).length;
+    assert.equal(count(mo, /aed__car is-responding is-arrived/g), okM, s.id);
+    assert.equal(count(mo, /aed__car is-responding is-failed/g), routes.length - okM, s.id);
+  }
+});
+
+test('a volunteer on the second leg carries the AED', () => {
+  const s = scene('typical');
+  const late = renderPanel('static', s, TIMING.pre + TIMING.grow + TIMING.tau * 0.85);
+  assert.match(late, /class="aed__walker[^"]*is-carrying/);
 });
 
 test('the patient is marked in time or missed when the window closes', () => {
@@ -54,11 +76,13 @@ test('the time-window ring empties as τ runs out', () => {
   assert.ok(start < mid && mid < end, `${start} ${mid} ${end}`);
 });
 
-test('outcome text names the bottleneck when a delivery is missed', () => {
-  assert.match(outcomeText('static', scene('far-aeds'), END), /No volunteer can fetch an AED/);
+test('outcome text counts arrivals and names the bottleneck', () => {
+  const s = scene('typical');
+  const okS = solveStatic(s).routes.filter((r) => r.ok).length;
+  assert.match(outcomeText('static', s, END), new RegExp(`${okS} of ${s.volunteers.length} volunteers arrive in time`));
+  assert.match(outcomeText('static', scene('far-aeds'), END), /No volunteer/);
   assert.match(outcomeText('mobile', scene('rush-hour'), END), /busy/);
-  assert.match(outcomeText('static', scene('typical'), END), /In time/);
-  assert.equal(outcomeText('static', scene('typical'), 0), '');
+  assert.equal(outcomeText('static', s, 0), '');
 });
 
 test('a panel is a self-contained SVG', () => {
