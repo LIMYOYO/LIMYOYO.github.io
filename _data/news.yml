@@ -1,5 +1,5 @@
 # News, newest first. Each item: a date (shown as written) and text (Markdown).
-# The homepage shows the first 4; /news/ shows all of them.
+# The homepage shows the first 3; /news/ shows all of them.
 
 - date: Nov 2026
   text: >-

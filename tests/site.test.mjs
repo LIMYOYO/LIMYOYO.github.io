@@ -225,3 +225,13 @@ test('paper rows show their research area', () => {
     }
   }
 });
+
+test('news docs state the real homepage count', () => {
+  const limit = readFileSync(join(ROOT, '_layouts/home.html'), 'utf8').match(/news-rows\.html limit=(\d+)/)[1];
+  const words = { 3: 3, 4: 4 };
+  for (const f of ['README.md', '_data/news.yml']) {
+    const m = readFileSync(join(ROOT, f), 'utf8').match(/homepage shows the first (\d+)/);
+    assert.ok(m, `${f} does not say how many`);
+    assert.equal(m[1], limit, `${f} says ${m[1]}, homepage shows ${words[limit] ?? limit}`);
+  }
+});

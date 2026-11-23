@@ -12,7 +12,7 @@ Edit `_data/news.yml`. Put the newest item first:
     The paper “…” was accepted at *Journal Name*. [Paper details](/publication/your-paper-slug)
 ```
 
-`text` is Markdown, so `**bold**`, `*italic*` and `[links](url)` work. The homepage shows the first 4 items, and `/news/` shows all of them.
+`text` is Markdown, so `**bold**`, `*italic*` and `[links](url)` work. The homepage shows the first 3 items, and `/news/` shows all of them.
 
 ## Add a paper
 
