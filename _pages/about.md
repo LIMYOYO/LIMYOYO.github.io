@@ -18,4 +18,4 @@ research_areas:
   - Learning-augmented optimization
 ---
 
-I am a Ph.D. student in **Operations Management and Statistics (OMS)** at the [Rotman School of Management](https://www.rotman.utoronto.ca/), University of Toronto. I received my M.S. (2026) and B.E. (2023) in Industrial Engineering from [Shanghai Jiao Tong University (SJTU)](https://www.sjtu.edu.cn/).
+I am a Ph.D. student in **Operations Management and Statistics (OMS)** at the [Rotman School of Management](https://www.rotman.utoronto.ca/), University of Toronto, advised by [Ming Hu](https://ming.hu). I received my M.S. (2026) and B.E. (2023) in Industrial Engineering from [Shanghai Jiao Tong University (SJTU)](https://www.sjtu.edu.cn/).

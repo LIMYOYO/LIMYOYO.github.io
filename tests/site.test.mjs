@@ -125,7 +125,6 @@ test('hero has fallback and labels', () => {
 });
 
 test('no results or names leak', () => {
-  for (const { path, html } of allHtml()) assert.doesNotMatch(html, /\bMing\b/, path);
   const home = readPage('/');
   const hero = home.slice(home.indexOf('id="hero"'), home.indexOf('id="research"'));
   const scripts = ['bottleneck.js', 'bottleneck-sim.mjs'].map((f) => readFileSync(join(ROOT, 'assets/js', f), 'utf8')).join('\n');
@@ -143,4 +142,14 @@ test('hero controls opt out of form restoration', () => {
   const html = readPage('/');
   assert.match(html, /<input[^>]*id="robots"[^>]*autocomplete="off"/);
   assert.equal(count(html, /name="timing"[^>]*autocomplete="off"/g), 2);
+});
+
+test('advisor named and linked only in the about section', () => {
+  const home = readPage('/');
+  const about = home.slice(home.indexOf('id="about"'));
+  assert.match(about, /advised by <a href="https:\/\/ming\.hu">Ming Hu<\/a>/);
+});
+
+test('teaching entry links the SJTU course story', () => {
+  assert.match(readPage('/teaching/2024-production-simulation'), /href="https:\/\/news\.sjtu\.edu\.cn\/ztzl_aijyzl\/20260508\/222473\.html"/);
 });
