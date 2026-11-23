@@ -1,7 +1,7 @@
 // Checks on the built site. Build first (see README), then: node --test tests/
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { readPage, allHtml, internalLinks, resolveUrl, count, ROOT } from './lib/site.mjs';
 
@@ -152,4 +152,11 @@ test('advisor named and linked only in the about section', () => {
 
 test('teaching entry links the SJTU course story', () => {
   assert.match(readPage('/teaching/2024-production-simulation'), /href="https:\/\/news\.sjtu\.edu\.cn\/ztzl_aijyzl\/20260508\/222473\.html"/);
+});
+
+test('build output has no leftovers', () => {
+  for (const p of ['talkmap', 'markdown_generator', 'scripts', 'sitemap/index.html', 'year-archive', 'CONTRIBUTING.md', 'docker-compose.yaml', 'Dockerfile', 'docs', 'tests', 'tools', 'package.json', 'assets/fonts', 'assets/webfonts', 'images/themes']) {
+    assert.equal(resolveUrl('/' + p), null, `leftover in _site: ${p}`);
+    assert.ok(!existsSync(join(ROOT, '_site', p)), `leftover in _site: ${p}`);
+  }
 });
